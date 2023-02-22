@@ -1,11 +1,12 @@
-"""Base API Client"""
+"""Base Instance API Client"""
 
 from logging import getLogger
+from typing import Optional
 
-from oauthlib.oauth2 import BackendApplicationClient
 from requests.exceptions import HTTPError
 from requests_oauthlib import OAuth2Session
 
+from biggo_api._auth import auth_client_credentials
 from biggo_api.exception import BigGoAPIException
 
 
@@ -25,8 +26,9 @@ class BaseClient:
 
     def __init__(
         self,
-        client_id: str,
-        client_secret: str,
+        client_id: Optional[str] = None,
+        client_secret: Optional[str] = None,
+        oauth2_session: Optional[OAuth2Session] = None,
         host_url: str = 'https://api.biggo.com',
         verify: bool = True,
         **kwargs,
@@ -36,53 +38,34 @@ class BaseClient:
         Args:
             client_id: id for authentication
             client_secret: secret for authentication
+            oauth2_session: An authorized `requests_oauthlib.OAuth2Session` object
             host_url: api host
             verify: Verify SSL certificate
         """
         self.__host_url = host_url
-        self.__auth_path = 'auth/v1'
         self.__api_path = 'api/v1'
         self.verify = verify
 
-        self.__client_id = client_id
-        self.__client_secret = client_secret
-        self.__oauth: OAuth2Session = None
-
-        # check if client_id and client_secret provided
-        if client_id and client_secret:
-            # authorized with client credential grant
-            self.__auth_client_credentials()
+        self.__oauth2_session = oauth2_session
+        if self.__oauth2_session is not None and self.__oauth2_session.authorized:
+            logger.info("passing authorized oauth2 session")
             pass
+        # check if client_id and client_secret provided
+        elif client_id and client_secret:
+            # authorized with client credential grant
+            self.__oauth2_session = auth_client_credentials(
+                url='/'.join([self.__host_url, 'auth/v1/token']),
+                client_id=client_id, client_secret=client_secret,
+                verify=verify,
+                refresh_url='/'.join([self.__host_url, 'auth/v1/refresh_token']),
+            )
+            logger.info("authorized by client credentials")
+            pass
+        else:
+            raise BigGoAPIException(code=2, message="Without access token.")
         if kwargs:
             logger.warning("ignoring keyword arguments: %s", kwargs)
             pass
-        pass
-
-    def __auth_client_credentials(self) -> None:
-        """Authorize by client credentials
-
-        Raises:
-            InvalidClientIdError: authorization failed
-        """
-        # compose refresh token url
-        refresh_url = '/'.join(
-            [self.__host_url, self.__auth_path, 'refresh_token'],
-        )
-        # init oauth 2.0 session
-        self.__oauth = OAuth2Session(
-            client=BackendApplicationClient(client_id=self.__client_id),
-            auto_refresh_url=refresh_url,
-        )
-        # compose token url in the format: {host_url}/{auth_path}/token
-        url = '/'.join([self.__host_url, self.__auth_path, 'token'])
-        # setup params: token url, auth(id & secret)
-        params = {
-            'token_url': url,
-            'auth': (self.__client_id, self.__client_secret),
-            'verify': self.verify,
-        }
-        # get access token from authorized server
-        self.__oauth.fetch_token(**params)
         pass
 
     def request(self, method: str, path: str, **kwargs) -> dict:
@@ -104,7 +87,7 @@ class BaseClient:
             'verify': self.verify,
             **kwargs,
         }
-        response = self.__oauth.request(**params)
+        response = self.__oauth2_session.request(**params)
         logger.debug(
             'status: %s, content: %s',
             response.status_code, response.content,
@@ -131,8 +114,8 @@ class BaseClient:
         Returns:
             A bool value represents authorization status. True if authorized, otherwise False.
         """
-        if self.__oauth:
-            return self.__oauth.authorized
+        if self.__oauth2_session:
+            return self.__oauth2_session.authorized
         logger.warning("OAuth2Session undefined")
         return False
     pass

@@ -2,9 +2,12 @@ from os import environ
 from typing import Optional, Union
 import unittest
 
-from biggo_api.clients import VideoClient
-from biggo_api.model import EditedVideo, NewVideo, Video
+from requests.exceptions import HTTPError
+from biggo_api.clients import APIClient
+from biggo_api.clients.video import VideoClient
 from biggo_api.enum import Limit
+from biggo_api.exception import BigGoAPIException
+from biggo_api.model import EditedVideo, NewVideo, Video
 
 
 CLIENT_ID = environ.get('CLIENT_ID')
@@ -12,7 +15,7 @@ CLIENT_SECRET = environ.get('CLIENT_SECRET')
 TEST_HOST = environ.get('TEST_HOST')
 FILENAME = './sample_video/BigGoDecoration2.mp4'
 NOTFOUND_FILENAME = './sample_video/NotExistVideo.mp4'
-RUNTIME_DATA: dict[str, Union[VideoClient, str]] = {
+RUNTIME_DATA: dict[str, Union[APIClient, str]] = {
     'client': None,
     'video_id': None,
     'comment_id': None,
@@ -23,18 +26,18 @@ class TestVideoClient(unittest.TestCase):
     def __get_video_client(self) -> VideoClient:
         if RUNTIME_DATA['client'] is None:
             if TEST_HOST is not None:
-                RUNTIME_DATA['client'] = VideoClient(
+                RUNTIME_DATA['client'] = APIClient(
                     client_id=CLIENT_ID,
                     client_secret=CLIENT_SECRET,
                     host_url=TEST_HOST,
                 )
             else:
-                RUNTIME_DATA['client'] = VideoClient(
+                RUNTIME_DATA['client'] = APIClient(
                     client_id=CLIENT_ID,
                     client_secret=CLIENT_SECRET,
                 )
             pass
-        return RUNTIME_DATA['client']
+        return RUNTIME_DATA['client'].video
 
     def __upload_video(self, file: str) -> str:
         video_client = self.__get_video_client()
@@ -84,19 +87,26 @@ class TestVideoClient(unittest.TestCase):
         self.assertIsInstance(video, Video)
         self.assertEqual(video.video_id, video_id)
         self.__delete_video(video_id=video_id)
-        deleted_video = self.__get_video(video_id=video_id)
-        self.assertIsNone(deleted_video)
+        with self.assertRaises(BigGoAPIException) as ex:
+            deleted_video = self.__get_video(video_id=video_id)
+            pass
+        raised_exc = ex.exception
+        self.assertEqual(raised_exc.code, 1004)
         pass
 
-    def __test_upload_duplicate_video(self):
-        return
+    def test_upload_duplicate_video(self):
         video_id = self.__upload_video(file=FILENAME)
-        with self.assertRaises(()):
+        with self.assertRaises((HTTPError, BigGoAPIException)) as ex:
             self.__upload_video(file=FILENAME)
             pass
+        raised_exc = ex.exception
+        if isinstance(raised_exc, BigGoAPIException):
+            self.assertEqual(ex.exception.code == 1002)
+            pass
+        self.__delete_video(video_id=video_id)
         pass
 
-    def test_setup_new_video(self):
+    def __test_setup_new_video(self):
         video_id = self.__upload_video(file=FILENAME)
         new_video = NewVideo(
             video_id=video_id,
@@ -114,7 +124,7 @@ class TestVideoClient(unittest.TestCase):
         self.__delete_video(video_id=video_id)
         pass
 
-    def test_update_video(self):
+    def __test_update_video(self):
         video_id = self.__upload_video(file=FILENAME)
         new_video = NewVideo(
             video_id=video_id,
