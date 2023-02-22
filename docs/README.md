@@ -1,9 +1,8 @@
 # Usage Guide
 - [Usage Guide](#usage-guide)
   - [Clients](#clients)
-  - [Client Initialization](#client-initialization)
-    - [Grant Type](#grant-type)
-  - [Check Client Authorization](#check-client-authorization)
+  - [Initialize API Client](#initialize-api-client)
+    - [Client Credentials](#client-credentials)
 
 ---
 ## Clients
@@ -11,20 +10,15 @@
 - [Comment Client](comment.md)
 - [User Client](user.md)
 
-## Client Initialization
-use VideoClient for example
-### Grant Type
-1. Client Credentials  
+## Initialize API Client
+Initialize API Client for different grant type.  
+Currently support: [client credentials](#client-credentials).
+### Client Credentials  
 Grant client using client credentials.
 ```
-from biggo_api.clients import VideoClient
+from biggo_api.clients import APIClient
 
-video_client = VideoClient(
+api_client = APIClient(
     client_id='CLIENT_ID', client_secret='CLIENT_SECRET',
 )
-```
-## Check Client Authorization
-Check if client's OAuth2 Session has OAuth token.
-```
-video_client.authorized
 ```
