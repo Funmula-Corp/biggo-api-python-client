@@ -4,12 +4,12 @@ from dataclasses import dataclass
 from typing import Optional
 
 from biggo_api.model._base import Base
-from biggo_api.model.product import DraftProduct, Product
+from biggo_api.model.product import ProductRequest, ProductResponse
 
 
 @dataclass
-class EditedVideo(Base):
-    """This class is used for updating video settings """
+class VideoSettings(Base):
+    """This class is used for post/patch video settings"""
     _ALIASES = {
         'thumbnail_ts': 'thumbnail-ts',
     }
@@ -17,39 +17,24 @@ class EditedVideo(Base):
     video_id: str
     description: Optional[str] = None
     limit: Optional[str] = None
-    product_list: Optional[list[DraftProduct]] = None
+    product_list: Optional[list[ProductRequest]] = None
     thumbnail_ts: Optional[int] = None
     pass
 
 
 @dataclass
-class NewVideo(Base):
-    """This class is used for setting up newly uploaded video"""
-    _ALIASES = {
-        'thumbnail_ts': 'thumbnail-ts',
-    }
-    _EXCLUDE_FIELDS = ['video_id']
-    video_id: str
-    description: str
-    limit: str
-    product_list: list[DraftProduct]
-    thumbnail_ts: int
-    pass
-
-
-@dataclass
-class VideoDownload(Base):
+class VideoResponseDownload(Base):
     """This class represents specific format's download path of video"""
     mp4: str
     pass
 
 
 @dataclass
-class VideoMeta(Base):
+class VideoResponseMeta(Base):
     """This class represents meta data of video"""
     aspect_ratio: Optional[str]
     cover_image: str
-    download: VideoDownload
+    download: VideoResponseDownload
     iso8601_length: str
     length: float
     thumbnails: list[str]
@@ -57,7 +42,7 @@ class VideoMeta(Base):
 
 
 @dataclass
-class VideoStatus(Base):
+class VideoResponseStatus(Base):
     """This class represents status of processing video"""
     process_status: int
     process_status_kw: list[str]
@@ -66,7 +51,7 @@ class VideoStatus(Base):
 
 
 @dataclass
-class Video(Base):
+class VideoResponse(Base):
     """This class represents a video"""
     _ALIASES = {
         'at_user_id': 'at_userid',
@@ -83,9 +68,9 @@ class Video(Base):
     is_like: bool
     is_myvideo: bool
     limit: int
-    meta: VideoMeta
+    meta: VideoResponseMeta
     product_count: int
-    status: VideoStatus
+    status: VideoResponseStatus
     str_datetime: str
     timestamp: int
     url: str
@@ -101,7 +86,7 @@ class Video(Base):
     is_verify_user: Optional[bool] = None
     like_list: Optional[list[str]] = None
     name: Optional[str] = None
-    product_list: Optional[list[Product]] = None
+    product_list: Optional[list[ProductResponse]] = None
     profile_image: Optional[str] = None
     pass
 

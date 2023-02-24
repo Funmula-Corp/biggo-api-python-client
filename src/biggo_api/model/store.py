@@ -6,7 +6,7 @@ from biggo_api.model._base import Base
 
 
 @dataclass
-class Store(Base):
+class StoreResponse(Base):
     """This class represents a store"""
     name: str
     nindex: str

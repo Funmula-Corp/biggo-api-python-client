@@ -4,11 +4,11 @@ from dataclasses import dataclass
 from typing import Optional, Union
 
 from biggo_api.model._base import Base
-from biggo_api.model.store import Store
+from biggo_api.model.store import StoreResponse
 
 
 @dataclass
-class User(Base):
+class UserResponse(Base):
     """This class represents a user"""
     _ALIASES = {
         'at_user_id': 'at_userid',
@@ -31,5 +31,5 @@ class User(Base):
     follower_count: Optional[int] = None
     is_follow: Optional[bool] = None
     is_my_video: Optional[bool] = None
-    store_list: Optional[list[Store]] = None
+    store_list: Optional[list[StoreResponse]] = None
     pass

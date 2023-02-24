@@ -7,7 +7,7 @@ from biggo_api.model._base import Base
 
 
 @dataclass
-class Comment(Base):
+class CommentResponse(Base):
     """This class represents a comment"""
     _ALIASES = {
         'at_user_id': 'at_userid',
@@ -48,12 +48,12 @@ class Comment(Base):
     # optional: createComment
     is_delete: Optional[bool] = None
     # optional: getComments
-    child_comments: Optional[list["Comment"]] = None
+    child_comments: Optional[list["CommentResponse"]] = None
     pass
 
 
 @dataclass
-class CommentLog(Base):
+class CommentHistory(Base):
     """This class represents a comment log"""
     _ALIASES = {
         'comment_owner_id': 'comment_owner_userid',
@@ -94,7 +94,7 @@ class NewComment(Base):
 
 
 @dataclass
-class EditedComment(Base):
+class CommentRequest(Base):
     """
     This class is used for updating comment
 

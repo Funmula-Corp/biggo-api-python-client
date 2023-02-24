@@ -4,14 +4,14 @@ from logging import getLogger
 from os import stat
 from typing import Optional
 
-from biggo_api.clients._base import BaseClient
-from biggo_api.model import EditedVideo, NewVideo, User, Video, VideoAnalysis
+from biggo_api.clients._base import BaseInstanceClient
+from biggo_api.model import VideoSettings, VideoSettings, UserResponse, VideoResponse, VideoAnalysis
 
 
 logger = getLogger(__name__)
 
 
-class VideoClient(BaseClient):
+class VideoClient(BaseInstanceClient):
     """Client to access video API"""
 
     def has_permission(self) -> bool:
@@ -48,7 +48,7 @@ class VideoClient(BaseClient):
             pass
         return response_json['video_id']
 
-    def search(self, keyword: str, tag_only: bool = False) -> list[Video]:
+    def search(self, keyword: str, tag_only: bool = False) -> list[VideoResponse]:
         """Search videos by keyword or tag
 
         Args:
@@ -66,12 +66,12 @@ class VideoClient(BaseClient):
             params=params,
         )
         videos = [
-            Video.from_dict(video)
+            VideoResponse.from_dict(video)
             for video in response_json['data']
         ]
         return videos
 
-    def recommend(self) -> list[Video]:
+    def recommend(self) -> list[VideoResponse]:
         """Get recommended videos
 
         Returns:
@@ -83,12 +83,12 @@ class VideoClient(BaseClient):
             path='video/recommend',
         )
         videos = [
-            Video.from_dict(video)
+            VideoResponse.from_dict(video)
             for video in response_json['data']
         ]
         return videos
 
-    def get(self, video_id: str) -> Optional[Video]:
+    def get(self, video_id: str) -> Optional[VideoResponse]:
         """Get video
 
         Args:
@@ -102,43 +102,47 @@ class VideoClient(BaseClient):
             path=f'video/{video_id}',
         )
         if response_json['video']:
-            video = Video.from_dict(response_json['video'][0])
+            video = VideoResponse.from_dict(response_json['video'][0])
             return video
         return None
 
-    def update(self, edited_video: EditedVideo) -> bool:
+    def post_settings(self, video_settings: VideoSettings) -> bool:
         """
-        Update video settings
+        Update video settings using POST method.
 
         Args:
-            video: The `biggo_api.model.EditedVideo` object
+            video: The `biggo_api.model.VideoSettings` object
 
         Returns:
             A bool value represents result
         """
-        video_setting = edited_video.to_dict()
-        if not video_setting:
+        video_settings_dict = video_settings.to_dict(exclude_none=False)
+        if None in video_settings_dict.values():
             return False
         response_json = self.request(
-            method='PATCH',
-            path=f'video/{edited_video.video_id}',
-            json=video_setting,
+            method='POST',
+            path=f'video/{video_settings.video_id}',
+            json=video_settings_dict,
         )
         return response_json is not None
 
-    def setup_new_video(self, new_video: NewVideo) -> bool:
-        """Setup newly uploaded video
+    def patch_settings(self, video_settings: VideoSettings) -> bool:
+        """
+        Update video settings using PATCH method
 
         Args:
-            new_video: The `biggo_api.model.NewVideo` object
+            video: The `biggo_api.model.VideoSettings` object
 
         Returns:
             A bool value represents result
         """
+        video_settings_dict = video_settings.to_dict()
+        if not video_settings_dict:
+            return False
         response_json = self.request(
-            method='POST',
-            path=f'video/{new_video.video_id}',
-            json=new_video.to_dict(),
+            method='PATCH',
+            path=f'video/{video_settings.video_id}',
+            json=video_settings_dict,
         )
         return response_json is not None
 
@@ -157,7 +161,7 @@ class VideoClient(BaseClient):
         )
         return response_json is not None
 
-    def get_like_list(self, video_id: str) -> list[User]:
+    def get_like_list(self, video_id: str) -> list[UserResponse]:
         """Get like list of video
 
         Args:
@@ -172,7 +176,7 @@ class VideoClient(BaseClient):
             path=f'video/{video_id}/like',
         )
         like_list = [
-            User.from_dict(user)
+            UserResponse.from_dict(user)
             for user in response_json['users']
         ]
         return like_list
@@ -225,17 +229,4 @@ class VideoClient(BaseClient):
         )
         analysis = VideoAnalysis.from_dict(response_json['data'])
         return analysis
-
-    def get_follower_liked_videos(self, video_id: str) -> list[Video]:
-        """Get for cache
-
-        Args:
-            video_id: The id of video
-        """
-        raise NotImplementedError
-        response_json = self.request(
-            method='GET',
-            path=f'video/{video_id}/follow',
-        )
-        pass
     pass

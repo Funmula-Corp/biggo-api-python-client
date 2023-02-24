@@ -1,13 +1,13 @@
 """The API client of video comment"""
 
-from biggo_api.model import Comment, CommentLog, EditedComment, NewComment
-from biggo_api.clients._base import BaseClient
+from biggo_api.model import CommentResponse, CommentHistory, CommentRequest, NewComment
+from biggo_api.clients._base import BaseInstanceClient
 
 
-class CommentClient(BaseClient):
+class CommentClient(BaseInstanceClient):
     """Client to access video comment API"""
 
-    def create(self, new_comment: NewComment) -> Comment:
+    def create(self, new_comment: NewComment) -> CommentResponse:
         """Create new comment
 
         Args:
@@ -23,10 +23,10 @@ class CommentClient(BaseClient):
             json=new_comment.to_dict(),
         )
         dict_created_comment = response_json['created_comment']
-        created_comment = Comment.from_dict(dict_data=dict_created_comment)
+        created_comment = CommentResponse.from_dict(dict_data=dict_created_comment)
         return created_comment
 
-    def update(self, edited_comment: EditedComment) -> bool:
+    def update(self, edited_comment: CommentRequest) -> bool:
         """Update comment
 
         Args:
@@ -91,7 +91,7 @@ class CommentClient(BaseClient):
         )
         return response_json is not None
 
-    def get_list(self, video_id: str, parent_id: str = None) -> list[Comment]:
+    def get_list(self, video_id: str, parent_id: str = None) -> list[CommentResponse]:
         """Get list of comments
 
         Args:
@@ -110,25 +110,25 @@ class CommentClient(BaseClient):
             path=f'video/{video_id}/{parent_id}'
         )
         comments = [
-            Comment.from_dict(dict_data=dict_comment)
+            CommentResponse.from_dict(dict_data=dict_comment)
             for dict_comment in response_json['comments']
         ]
         return comments
 
-    def get_comment_log(self) -> list[CommentLog]:
+    def get_comment_history(self) -> list[CommentHistory]:
         """Get comment log
 
         Returns:
-            A list of `biggo_api.model.CommentLog` object
+            A list of `biggo_api.model.CommentHistory` object
         """
         raise NotImplementedError
         response_json = self.request(
             method='GET',
             path='video/comment_log/',
         )
-        comment_logs = [
-            CommentLog.from_dict(comment_log)
-            for comment_log in response_json['comment_logs']
+        comment_history = [
+            CommentHistory.from_dict(comment_history)
+            for comment_history in response_json['comment_logs']
         ]
-        return comment_logs
+        return comment_history
     pass

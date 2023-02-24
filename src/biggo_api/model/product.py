@@ -7,7 +7,7 @@ from biggo_api.model._base import Base
 
 
 @dataclass
-class DraftProduct(Base):
+class ProductRequest(Base):
     """This class is used for setting up or updating video product list"""
     nindex: str
     oid: str
@@ -15,7 +15,7 @@ class DraftProduct(Base):
 
 
 @dataclass
-class Product(Base):
+class ProductResponse(Base):
     """This class represents a product in video"""
     _ALIASES = {
         'has_shop': 'hasShop',
