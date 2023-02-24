@@ -29,6 +29,19 @@ def auth_client_credentials(
 
     Returns:
         A  `requests_oauthlib.OAuth2Session` object
+
+    Examples:
+        Use this function to get an OAuth2Session object by client credentials then verify its authorization status.
+
+        >>> credentials = ClientCredentials(
+        ...     client_id='CLIENT_ID', client_secret='CLIENT_SECRET'
+        ... )
+        >>> oauth2_session = auth_client_credentials(
+        ...     url='https://api.biggo.com/auth/v1/token',
+        ...     client_credentials=credentials,
+        ... )
+        >>> oauth2_session.authorized
+        True
     """
     # initialize client for client credentials
     client = BackendApplicationClient(client_id=client_credentials.client_id)

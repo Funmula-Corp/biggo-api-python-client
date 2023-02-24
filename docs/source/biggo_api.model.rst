@@ -4,6 +4,15 @@ biggo\_api.model package
 Submodules
 ----------
 
+biggo\_api.model.\_base module
+------------------------------
+
+.. automodule:: biggo_api.model._base
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   :private-members:
+
 biggo\_api.model.comment module
 -------------------------------
 
@@ -11,6 +20,7 @@ biggo\_api.model.comment module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 biggo\_api.model.product module
 -------------------------------
@@ -19,6 +29,7 @@ biggo\_api.model.product module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 biggo\_api.model.store module
 -----------------------------
@@ -27,6 +38,7 @@ biggo\_api.model.store module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 biggo\_api.model.user module
 ----------------------------
@@ -35,6 +47,7 @@ biggo\_api.model.user module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 biggo\_api.model.video module
 -----------------------------
@@ -43,6 +56,7 @@ biggo\_api.model.video module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 Module contents
 ---------------
@@ -51,3 +65,4 @@ Module contents
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:

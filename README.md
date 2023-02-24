@@ -19,9 +19,7 @@ source <venv-name>/bin/activate
 pip install biggo-api
 ```
 
-## Usage
----
-### Quick Example
+## Workflow Example
 ```Python
 from biggo_api.clients import APIClient
 from biggo_api.enum import Limit

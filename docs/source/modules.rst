@@ -1,5 +1,5 @@
-src
-===
+biggo_api
+=========
 
 .. toctree::
    :maxdepth: 4
