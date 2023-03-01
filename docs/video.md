@@ -19,7 +19,7 @@ video_id = api_client.video.upload(file='FILENAME')
 ## Setup Video Settings
 Setup video settings.  
 Settings include description, visibility, product list and thumbnail timestmp in microseconds.  
-Filled video settings in a [NewVideo](/src/biggo_api/model/video.py) object.
+Video settings would be filled into the [NewVideo](/src/biggo_api/model/video.py) object.
 ```python
 from biggo_api.enum import Limit
 from biggo_api.model import NewVideo, DraftProduct
@@ -40,7 +40,7 @@ video = api_client.video.get(video_id=video_id)
 ```
 ## Update Video Settings
 Update partial settings of video.  
-Filled video settings (at least one) in an [EditedVideo](/src/biggo_api/model/video.py) object.
+Video settings (at least one) would be filled into the [EditedVideo](/src/biggo_api/model/video.py) object.
 ```python
 from biggo_api.model import EditedVideo
 
