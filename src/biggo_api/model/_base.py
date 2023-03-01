@@ -22,9 +22,6 @@ class Base:
 
         Args:
             dict_data: The dict object to convert
-
-        Returns:
-            A class object which called this method
         """
         reversed_aliases = {v: k for k, v in cls._ALIASES.items()}
         derived_dict = {}
@@ -46,9 +43,6 @@ class Base:
 
         Args:
             exclude_none: set to False will keep keys with `None` value
-
-        Returns:
-            A dict object of data in this class
         """
         dict_data = asdict(self)
         for ori, alias in self._ALIASES.items():

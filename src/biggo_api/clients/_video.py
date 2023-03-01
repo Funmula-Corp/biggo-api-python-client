@@ -17,9 +17,6 @@ class VideoClient(BaseInstanceClient):
     def has_permission(self) -> bool:
         """
         Verify permission of client to upload video
-
-        Returns:
-            A bool value represents result
         """
         response_json = self.request(
             method='POST',
@@ -32,9 +29,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             file: The file path & name of video file
-
-        Returns:
-            A str value represents the id of uploaded video
         """
         file_stat = stat(file)
         file_size = file_stat.st_size
@@ -54,9 +48,6 @@ class VideoClient(BaseInstanceClient):
         Args:
             keyword: The keyword to search for
             tag_only: Set to True will search #target
-
-        Returns:
-            A list of `biggo_api.model.Video` object
         """
         raise NotImplementedError
         params = {'tag': keyword} if tag_only else {'q': keyword}
@@ -73,9 +64,6 @@ class VideoClient(BaseInstanceClient):
 
     def recommend(self) -> list[VideoResponse]:
         """Get recommended videos
-
-        Returns:
-            A list of `biggo_api.model.Video` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -93,9 +81,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A `biggo_api.model.Video` object, None if not found
         """
         response_json = self.request(
             method='GET',
@@ -111,10 +96,7 @@ class VideoClient(BaseInstanceClient):
         Update video settings using POST method.
 
         Args:
-            video: The `biggo_api.model.VideoSettings` object
-
-        Returns:
-            A bool value represents result
+            video: The :class:`biggo_api.model.VideoSettings` object
         """
         video_settings_dict = video_settings.to_dict(exclude_none=False)
         if None in video_settings_dict.values():
@@ -131,10 +113,7 @@ class VideoClient(BaseInstanceClient):
         Update video settings using PATCH method
 
         Args:
-            video: The `biggo_api.model.VideoSettings` object
-
-        Returns:
-            A bool value represents result
+            video: The :class:`biggo_api.model.VideoSettings` object
         """
         video_settings_dict = video_settings.to_dict()
         if not video_settings_dict:
@@ -151,9 +130,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A bool value represents result
         """
         response_json = self.request(
             method='DELETE',
@@ -166,9 +142,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A list of `biggo_api.model.User` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -186,9 +159,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -202,9 +172,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -218,9 +185,6 @@ class VideoClient(BaseInstanceClient):
 
         Args:
             video_id: The id of video
-
-        Returns:
-            A `biggo_api.model.VideoAnalysis` object
         """
         raise NotImplementedError
         response_json = self.request(

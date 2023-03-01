@@ -4,7 +4,8 @@ The official Python client library for BigGo API.
 
 ## Documentation
 ---
-See usage guide in [docs folder](docs)
+See usage guide in [docs folder](docs)  
+See detailed explaination in [Sphinx-docs folder](Sphinx-docs/_build/markdown/index.md)  
 
 ## Installaiton
 ---

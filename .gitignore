@@ -1,7 +1,7 @@
 *.sh
 *.mp4
 tests/*.env
-tests/local_test.py
+tests/local.py
 requirements.txt
 
 # ---> Python

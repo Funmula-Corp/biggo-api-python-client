@@ -11,10 +11,7 @@ class CommentClient(BaseInstanceClient):
         """Create new comment
 
         Args:
-            new_comment: A `biggo_api.model.NewComment` object
-
-        Returns:
-            A `biggo_api.model.Comment` object
+            new_comment: A :class:`biggo_api.model.NewComment` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -30,10 +27,7 @@ class CommentClient(BaseInstanceClient):
         """Update comment
 
         Args:
-            edited_comment: A `biggo_api.model.EditedComment` object
-
-        Returns:
-            A bool value represents result
+            edited_comment: A :class:`biggo_api.model.EditedComment` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -48,9 +42,6 @@ class CommentClient(BaseInstanceClient):
 
         Args:
             comment_id: The id of comment
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -64,9 +55,6 @@ class CommentClient(BaseInstanceClient):
 
         Args:
             comment_id: The id of comment
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -80,9 +68,6 @@ class CommentClient(BaseInstanceClient):
 
         Args:
             comment_id: The id of comment
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -97,9 +82,6 @@ class CommentClient(BaseInstanceClient):
         Args:
             video_id: The id of video
             parent_id: The id of parent id (video or comment)
-
-        Returns:
-            A list of `biggo_api.model.Comment` object
         """
         raise NotImplementedError
         if parent_id is None:
@@ -117,9 +99,6 @@ class CommentClient(BaseInstanceClient):
 
     def get_comment_history(self) -> list[CommentHistory]:
         """Get comment log
-
-        Returns:
-            A list of `biggo_api.model.CommentHistory` object
         """
         raise NotImplementedError
         response_json = self.request(

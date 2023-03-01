@@ -17,10 +17,11 @@ class BaseInstanceClient:
 
     BigGo API Client using OAuth 2.0 (https://oauth.net/2/).
 
-    Support grant types & required parameters:
-    - Client Credentials:
-        - client_id
-        - client_secret
+    Attributes:
+        oauth2_session: An authorized `requests_oauthlib.OAuth2Session` object
+        host_url: API host
+        region: Region of client, leave it `None` will auto filled by server
+        verify: Verify SSL certificate
     """
 
     def __init__(
@@ -30,21 +31,12 @@ class BaseInstanceClient:
         verify: bool,
         region: Optional[str] = None,
     ):
-        """Construct Client
-
-        Args:
-            client_id: Id for authentication
-            client_secret: Secret for authentication
-            oauth2_session: An authorized `requests_oauthlib.OAuth2Session` object
-            host_url: API host
-            region: Region of client, leave it `None` will auto filled by server
-            verify: Verify SSL certificate
-        """
         self.__host_url = host_url
         self.__api_path = 'api/v1'
         self.region = region
         self.verify = verify
 
+        # check if oauth2_session exist and authorized
         if not (isinstance(oauth2_session, OAuth2Session) and oauth2_session.authorized):
             raise ValueError("Invalid oauth2_session")
         self.__oauth2_session = oauth2_session
@@ -57,15 +49,19 @@ class BaseInstanceClient:
             method: The method of this request
             path: The sub path of request url after {host}/{api_path}
 
-        Returns:
-            A dict object (parsed response)
+        Examples:
+            send a GET request to 'https://api.biggo.com/api/v1/example'
+
+            >>> client.request(method='GET', path='example')
+            { "result": True, ... }
         """
         # compose request url in the format: {host_url}/{api_path}/{path}
         url = '/'.join([self.__host_url, self.__api_path, path])
-        # setup parameters that sent to request function
+        # add region to header if provided
         if self.region is not None:
             headers = {'region': self.region} | headers
             pass
+        # set request parameters
         params = {
             'method': method,
             'url': url,
@@ -78,18 +74,23 @@ class BaseInstanceClient:
             'status: %s, content: %s',
             response.status_code, response.content,
         )
+        # get parsed response
         response_json: dict = response.json()
         if response_json.get('result', False):
+            # return parsed response if result = True
             return response_json
+        # check if response status is client error with error message
         if (
             400 <= response.status_code < 500 and
             'error' in response_json and
             'message' in response_json['error']
         ):
             raise BigGoAPIException(**response_json['error'])
+        # raise server error if status code = 5xx
         response.raise_for_status()
+        # raise HTTPError when status code is not 4xx or 5xx but result = False
         raise HTTPError(
-            f'{response.status_code} Result equals False',
+            f'{response.status_code} result equals False',
             response=response,
         )
     pass

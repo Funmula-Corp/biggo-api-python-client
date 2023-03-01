@@ -12,9 +12,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.Video` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -32,9 +29,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.Product` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -52,9 +46,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.Video` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -67,23 +58,15 @@ class UserClient(BaseInstanceClient):
         ]
         return liked_videos
 
-    def get_public_video_list(self, user_id: str) -> list[VideoResponse]:
-        """Get user's public videos
+    def get_user_video_list(self, user_id: str) -> list[VideoResponse]:
+        """Get user's videos
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.Video` objects
         """
-        raise NotImplementedError
-        params = {
-            'tab': 'user_video',
-        }
         response_json = self.request(
             method='GET',
             path=f'user/{user_id}/video/',
-            params=params,
         )
         user_videos = [
             VideoResponse.from_dict(video)
@@ -93,17 +76,10 @@ class UserClient(BaseInstanceClient):
 
     def get_own_video_list(self) -> list[VideoResponse]:
         """Get client's own videos
-
-        Returns:
-            A list of `biggo_api.model.Video` objects
         """
-        params = {
-            'tab': 'user_video',
-        }
         response_json = self.request(
             method='GET',
             path='user/self/video/',
-            params=params,
         )
         user_videos = [
             VideoResponse.from_dict(video)
@@ -116,9 +92,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -132,9 +105,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -148,9 +118,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             follower_id: The user id of follower
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -164,9 +131,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -180,9 +144,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -196,9 +157,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A bool value represents result
         """
         raise NotImplementedError
         response_json = self.request(
@@ -212,9 +170,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.User` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -232,9 +187,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            An int value represents number of followers
         """
         raise NotImplementedError
         response_json = self.request(
@@ -248,9 +200,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.User` object
         """
         raise NotImplementedError
         response_json = self.request(
@@ -268,9 +217,6 @@ class UserClient(BaseInstanceClient):
 
         Args:
             user_id: The id of user
-
-        Returns:
-            A list of `biggo_api.model.User` object
         """
         raise NotImplementedError
         response_json = self.request(

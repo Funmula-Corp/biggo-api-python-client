@@ -7,7 +7,12 @@ from requests_oauthlib import OAuth2Session
 
 
 class ClientCredentials(NamedTuple):
-    """The namedtuple class for client credentials"""
+    """The namedtuple class for client credentials.
+
+    Args:
+        client_id: Client identifier given by the OAuth provider upon registration.
+        client_secret: The secret paired to the client_id.
+    """
     client_id: str
     client_secret: str
     pass
@@ -26,9 +31,6 @@ def auth_client_credentials(
         client_credentials: A `NamedTuple` contains client_id and client_secret used for authorization
         verify: Verify SSL certificate
         refresh_url: The url address to refresh access token
-
-    Returns:
-        A  `requests_oauthlib.OAuth2Session` object
 
     Examples:
         Use this function to get an OAuth2Session object by client credentials then verify its authorization status.

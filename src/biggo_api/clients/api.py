@@ -16,9 +16,9 @@ class APIClient:
     """The API Client wraps all types of client
 
     Attributes:
-        comment: See `biggo_api.clients.comment.CommentClient`
-        user: See `biggo_api.clients.user.UserClient`
-        video: See `biggo_api.clients.video.VideoClient`
+        comment: See :class:`biggo_api.clients.comment.CommentClient`
+        user: See :class:`biggo_api.clients.user.UserClient`
+        video: See :class:`biggo_api.clients.video.VideoClient`
     """
     def __init__(
         self,
