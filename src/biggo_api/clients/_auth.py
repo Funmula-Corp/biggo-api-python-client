@@ -1,4 +1,4 @@
-"""This module contains classes of OAuth 2.0 grant type and their authorization function"""
+"""This module contains classes of OAuth 2.0 grant type and their authorization functions."""
 
 from typing import Optional, NamedTuple
 
@@ -24,16 +24,16 @@ def auth_client_credentials(
     verify: bool = True,
     refresh_url: Optional[str] = None,
 ) -> OAuth2Session:
-    """Authorize client by client credentials
-    
+    """Authorize client by client credentials grant.
+
     Args:
-        url: The url address to fetch token
-        client_credentials: A `NamedTuple` contains client_id and client_secret used for authorization
-        verify: Verify SSL certificate
-        refresh_url: The url address to refresh access token
+        url: The url address used to fetch token.
+        client_credentials: A `NamedTuple` contains client_id and client_secret used for authorization.
+        verify: Verify SSL certificate.
+        refresh_url: The url address used to refresh access token.
 
     Examples:
-        Use this function to get an OAuth2Session object by client credentials then verify its authorization status.
+        Call this function to get an `OAuth2Session` object using client credentials grant then verify its authorization status.
 
         >>> credentials = ClientCredentials(
         ...     client_id='CLIENT_ID', client_secret='CLIENT_SECRET'

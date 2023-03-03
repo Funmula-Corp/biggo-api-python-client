@@ -1,4 +1,4 @@
-"""Base API Instance Client"""
+"""This module define Base Instance Client of BigGo API."""
 
 from logging import getLogger
 from typing import Optional
@@ -13,15 +13,15 @@ logger = getLogger(__name__)
 
 
 class BaseInstanceClient:
-    """Base class of BigGo API Instance Client
+    """Base class of BigGo API Instance Client.
 
     BigGo API Client using OAuth 2.0 (https://oauth.net/2/).
 
     Attributes:
-        oauth2_session: An authorized `requests_oauthlib.OAuth2Session` object
-        host_url: API host
-        region: Region of client, leave it `None` will auto filled by server
-        verify: Verify SSL certificate
+        oauth2_session: An authorized `OAuth2Session` object.
+        host_url: API host.
+        region: Region of client.
+        verify: Verify SSL certificate.
     """
 
     def __init__(
@@ -43,14 +43,14 @@ class BaseInstanceClient:
         pass
 
     def request(self, method: str, path: str, headers: dict = {}, **kwargs) -> dict:
-        """Send request to /api/v1/{path} using given method with keyword arguments
+        """Send request to /api/v1/{path} using given method with headers and other keyword arguments.
 
         Args:
-            method: The method of this request
-            path: The sub path of request url after {host}/{api_path}
+            method: The method of this request.
+            path: The sub path of request url.
 
         Examples:
-            send a GET request to 'https://api.biggo.com/api/v1/example'
+            Send a GET request to 'https://api.biggo.com/api/v1/example'.
 
             >>> client.request(method='GET', path='example')
             { "result": True, ... }

@@ -4,7 +4,6 @@ from logging import getLogger
 from typing import Optional
 
 from biggo_api.clients._auth import ClientCredentials, auth_client_credentials
-from biggo_api.clients._comment import CommentClient
 from biggo_api.clients._user import UserClient
 from biggo_api.clients._video import VideoClient
 
@@ -16,7 +15,6 @@ class APIClient:
     """The API Client wraps all types of client
 
     Attributes:
-        comment: See :class:`biggo_api.clients.comment.CommentClient`
         user: See :class:`biggo_api.clients.user.UserClient`
         video: See :class:`biggo_api.clients.video.VideoClient`
     """
@@ -45,7 +43,6 @@ class APIClient:
             'region': region,
             'verify': verify,
         }
-        self.comment = CommentClient(**params)
         self.user = UserClient(**params)
         self.video = VideoClient(**params)
         if kwargs:
