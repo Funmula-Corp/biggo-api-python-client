@@ -6,9 +6,9 @@ from requests.exceptions import HTTPError
 
 from biggo_api.clients import APIClient, ClientCredentials
 from biggo_api.clients._video import VideoClient
-from biggo_api.enum import Limit
+from biggo_api.enum import Access
 from biggo_api.exception import BigGoAPIException
-from biggo_api.model import VideoSettings, VideoSettings, VideoResponse
+from biggo_api.data_models import BigGoVideo, VideoParams
 
 
 CLIENT_ID = environ.get('CLIENT_ID')
@@ -43,34 +43,42 @@ class TestVideoClient(unittest.TestCase):
         return RUNTIME_DATA['client'].video
 
     def __upload_video(self, file: str) -> str:
+        """Return video_id"""
         video_client = self.__get_video_client()
-        video_id = video_client.upload(file=file)
-        self.assertNotEqual(video_id, '')
-        return video_id
+        video_upload_response = video_client.upload(file=file)
+        self.assertTrue(video_upload_response.result)
+        self.assertNotEqual(video_upload_response.video_id, '')
+        return video_upload_response.video_id
 
-    def __post_video_settings(self, video_settings: VideoSettings) -> None:
+    def __post_video_params(self, video_params: VideoParams) -> None:
         video_client = self.__get_video_client()
-        self.assertTrue(video_client.patch_settings(video_settings=video_settings))
+        post_video_params_response = \
+            video_client.post_video_params(video_params=video_params)
+        self.assertTrue(post_video_params_response.result)
         pass
 
-    def __get_video(self, video_id: str) -> Optional[VideoResponse]:
+    def __get_video(self, video_id: str) -> BigGoVideo:
         video_client = self.__get_video_client()
-        video = video_client.get(video_id=video_id)
+        get_video_response = video_client.get(video_id=video_id)
+        self.assertTrue(get_video_response.result)
+        video = get_video_response.video[0]
         return video
 
-    def __patch_video_settings(self, video_settings: VideoSettings) -> None:
+    def __patch_video_params(self, video_params: VideoParams) -> None:
         video_client = self.__get_video_client()
-        self.assertTrue(video_client.patch_settings(video_settings=video_settings))
+        patch_video_params_response = \
+            video_client.patch_video_params(video_params=video_params)
+        self.assertTrue(patch_video_params_response.result)
         pass
 
     def __delete_video(self, video_id: str) -> None:
         video_client = self.__get_video_client()
-        self.assertTrue(video_client.delete(video_id=video_id))
+        self.assertTrue(video_client.delete(video_id=video_id).result)
         pass
 
     def test_has_permission(self):
         video_client = self.__get_video_client()
-        self.assertTrue(video_client.has_permission())
+        self.assertTrue(video_client.has_permission().result)
         pass
 
     def test_upload_notfound(self):
@@ -82,7 +90,6 @@ class TestVideoClient(unittest.TestCase):
     def test_upload_get_and_delete_video(self):
         video_id = self.__upload_video(file=FILENAME)
         video = self.__get_video(video_id=video_id)
-        self.assertIsInstance(video, VideoResponse)
         self.assertEqual(video.video_id, video_id)
         self.__delete_video(video_id=video_id)
         with self.assertRaises(BigGoAPIException) as ex:
@@ -104,37 +111,38 @@ class TestVideoClient(unittest.TestCase):
         self.__delete_video(video_id=video_id)
         pass
 
-    def test_post_video_settings(self):
+    def test_post_video_params(self):
         video_id = self.__upload_video(file=FILENAME)
-        video_settings = VideoSettings(
+        video_params = VideoParams(
             video_id=video_id,
+            access=Access.PUBLIC,
             description='test setup',
-            limit=Limit.everyone.name,
+            title='test post title',
         )
-        self.__post_video_settings(video_settings=video_settings)
+        self.__post_video_params(video_params=video_params)
         video = self.__get_video(video_id=video_id)
-        self.assertEqual(video.video_id, video_settings.video_id)
-        self.assertEqual(video.description, video_settings.description)
-        self.assertEqual(video.limit, Limit[video_settings.limit].value)
+        self.assertEqual(video.video_id, video_params.video_id)
+        self.assertEqual(video.description, video_params.description)
+        self.assertEqual(video.access, video_params.access)
         self.__delete_video(video_id=video_id)
         pass
 
-    def test_update_video(self):
+    def test_patch_video_params(self):
         video_id = self.__upload_video(file=FILENAME)
-        video_settings = VideoSettings(
+        video_params = VideoParams(
             video_id=video_id,
-            description='test post',
-            limit=Limit.everyone.name,
+            access=Access.PUBLIC,
+            description='test post description',
+            title='test post title',
         )
-        self.__post_video_settings(video_settings=video_settings)
-        video_settings_v2 = VideoSettings(
+        self.__patch_video_params(video_params=video_params)
+        video_params_v2 = VideoParams(
             video_id=video_id,
-            limit=Limit.non_public.name,
+            access=Access.UNLISTED,
         )
-        self.__patch_video_settings(video_settings=video_settings_v2)
+        self.__patch_video_params(video_params=video_params_v2)
         updated_video = self.__get_video(video_id=video_id)
-        self.assertIsNotNone(updated_video)
-        self.assertEqual(updated_video.limit, Limit[video_settings_v2.limit].value)
+        self.assertEqual(updated_video.access, video_params_v2.access)
         self.__delete_video(video_id=video_id)
         pass
     pass
