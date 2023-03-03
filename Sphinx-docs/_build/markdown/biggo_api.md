@@ -33,82 +33,16 @@
             * [`BaseInstanceClient.request()`](biggo_api.clients.md#biggo_api.clients._base.BaseInstanceClient.request)
 
 
-    * [biggo_api.clients._comment module](biggo_api.clients.md#module-biggo_api.clients._comment)
-
-
-        * [`CommentClient`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient)
-
-
-            * [`CommentClient.create()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.create)
-
-
-            * [`CommentClient.delete()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.delete)
-
-
-            * [`CommentClient.get_comment_history()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.get_comment_history)
-
-
-            * [`CommentClient.get_list()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.get_list)
-
-
-            * [`CommentClient.like()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.like)
-
-
-            * [`CommentClient.unlike()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.unlike)
-
-
-            * [`CommentClient.update()`](biggo_api.clients.md#biggo_api.clients._comment.CommentClient.update)
-
-
     * [biggo_api.clients._user module](biggo_api.clients.md#module-biggo_api.clients._user)
 
 
         * [`UserClient`](biggo_api.clients.md#biggo_api.clients._user.UserClient)
 
 
-            * [`UserClient.block()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.block)
+            * [`UserClient.get_own_videos()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_own_videos)
 
 
-            * [`UserClient.follow()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.follow)
-
-
-            * [`UserClient.get_block_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_block_list)
-
-
-            * [`UserClient.get_favorite_product_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_favorite_product_list)
-
-
-            * [`UserClient.get_follow_user_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_follow_user_list)
-
-
-            * [`UserClient.get_follower_count()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_follower_count)
-
-
-            * [`UserClient.get_follower_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_follower_list)
-
-
-            * [`UserClient.get_liked_video_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_liked_video_list)
-
-
-            * [`UserClient.get_own_video_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_own_video_list)
-
-
-            * [`UserClient.get_subscribed_video_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_subscribed_video_list)
-
-
-            * [`UserClient.get_user_video_list()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_user_video_list)
-
-
-            * [`UserClient.is_following()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.is_following)
-
-
-            * [`UserClient.remove_follower()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.remove_follower)
-
-
-            * [`UserClient.unblock()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.unblock)
-
-
-            * [`UserClient.unfollow()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.unfollow)
+            * [`UserClient.get_user_videos()`](biggo_api.clients.md#biggo_api.clients._user.UserClient.get_user_videos)
 
 
     * [biggo_api.clients._video module](biggo_api.clients.md#module-biggo_api.clients._video)
@@ -117,37 +51,19 @@
         * [`VideoClient`](biggo_api.clients.md#biggo_api.clients._video.VideoClient)
 
 
-            * [`VideoClient.analyze()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.analyze)
-
-
             * [`VideoClient.delete()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.delete)
 
 
             * [`VideoClient.get()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.get)
 
 
-            * [`VideoClient.get_like_list()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.get_like_list)
-
-
             * [`VideoClient.has_permission()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.has_permission)
 
 
-            * [`VideoClient.like()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.like)
+            * [`VideoClient.patch_video_params()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.patch_video_params)
 
 
-            * [`VideoClient.patch_settings()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.patch_settings)
-
-
-            * [`VideoClient.post_settings()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.post_settings)
-
-
-            * [`VideoClient.recommend()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.recommend)
-
-
-            * [`VideoClient.search()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.search)
-
-
-            * [`VideoClient.unlike()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.unlike)
+            * [`VideoClient.post_video_params()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.post_video_params)
 
 
             * [`VideoClient.upload()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.upload)
@@ -162,616 +78,247 @@
     * [Module contents](biggo_api.clients.md#module-biggo_api.clients)
 
 
+* [biggo_api.data_models package](biggo_api.data_models.md)
+
+
+    * [Submodules](biggo_api.data_models.md#submodules)
+
+
+    * [biggo_api.data_models.user module](biggo_api.data_models.md#module-biggo_api.data_models.user)
+
+
+        * [`VideoUserInfo`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo)
+
+
+            * [`VideoUserInfo.all_like_count`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.all_like_count)
+
+
+            * [`VideoUserInfo.at_userid`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.at_userid)
+
+
+            * [`VideoUserInfo.description`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.description)
+
+
+            * [`VideoUserInfo.follow_count`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.follow_count)
+
+
+            * [`VideoUserInfo.follower_count`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.follower_count)
+
+
+            * [`VideoUserInfo.is_follow`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.is_follow)
+
+
+            * [`VideoUserInfo.is_myvideo`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.is_myvideo)
+
+
+            * [`VideoUserInfo.is_verify_ecomm`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.is_verify_ecomm)
+
+
+            * [`VideoUserInfo.is_verify_user`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.is_verify_user)
+
+
+            * [`VideoUserInfo.name`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.name)
+
+
+            * [`VideoUserInfo.personal_url`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.personal_url)
+
+
+            * [`VideoUserInfo.profileimg`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.profileimg)
+
+
+            * [`VideoUserInfo.userid`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo.userid)
+
+
+    * [biggo_api.data_models.video module](biggo_api.data_models.md#module-biggo_api.data_models.video)
+
+
+        * [`BigGoVideo`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo)
+
+
+            * [`BigGoVideo.access`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.access)
+
+
+            * [`BigGoVideo.at_userid`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.at_userid)
+
+
+            * [`BigGoVideo.created_at`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.created_at)
+
+
+            * [`BigGoVideo.description`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.description)
+
+
+            * [`BigGoVideo.has_product`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.has_product)
+
+
+            * [`BigGoVideo.is_edited`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_edited)
+
+
+            * [`BigGoVideo.is_follow`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_follow)
+
+
+            * [`BigGoVideo.is_like`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_like)
+
+
+            * [`BigGoVideo.is_myvideo`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_myvideo)
+
+
+            * [`BigGoVideo.is_private`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_private)
+
+
+            * [`BigGoVideo.is_verify_ecomm`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_verify_ecomm)
+
+
+            * [`BigGoVideo.is_verify_user`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.is_verify_user)
+
+
+            * [`BigGoVideo.like_list`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.like_list)
+
+
+            * [`BigGoVideo.limit`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.limit)
+
+
+            * [`BigGoVideo.meta`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.meta)
+
+
+            * [`BigGoVideo.name`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.name)
+
+
+            * [`BigGoVideo.product_count`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.product_count)
+
+
+            * [`BigGoVideo.product_list`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.product_list)
+
+
+            * [`BigGoVideo.profile_image`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.profile_image)
+
+
+            * [`BigGoVideo.status`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.status)
+
+
+            * [`BigGoVideo.str_datetime`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.str_datetime)
+
+
+            * [`BigGoVideo.timestamp`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.timestamp)
+
+
+            * [`BigGoVideo.url`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.url)
+
+
+            * [`BigGoVideo.userid`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.userid)
+
+
+            * [`BigGoVideo.video_comment_count`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.video_comment_count)
+
+
+            * [`BigGoVideo.video_id`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.video_id)
+
+
+            * [`BigGoVideo.video_like_count`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.video_like_count)
+
+
+            * [`BigGoVideo.view_count`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo.view_count)
+
+
+        * [`BigGoVideoMeta`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta)
+
+
+            * [`BigGoVideoMeta.aspect_ratio`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.aspect_ratio)
+
+
+            * [`BigGoVideoMeta.cover_image`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.cover_image)
+
+
+            * [`BigGoVideoMeta.download`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.download)
+
+
+            * [`BigGoVideoMeta.iso8601_length`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.iso8601_length)
+
+
+            * [`BigGoVideoMeta.length`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.length)
+
+
+            * [`BigGoVideoMeta.thumbnails`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMeta.thumbnails)
+
+
+        * [`BigGoVideoMetaDownload`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMetaDownload)
+
+
+            * [`BigGoVideoMetaDownload.mp4`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoMetaDownload.mp4)
+
+
+        * [`BigGoVideoProcessStatus`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoProcessStatus)
+
+
+            * [`BigGoVideoProcessStatus.process_status`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoProcessStatus.process_status)
+
+
+            * [`BigGoVideoProcessStatus.process_status_kw`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoProcessStatus.process_status_kw)
+
+
+            * [`BigGoVideoProcessStatus.processing`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideoProcessStatus.processing)
+
+
+        * [`VideoParams`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams)
+
+
+            * [`VideoParams.Config`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.Config)
+
+
+            * [`VideoParams.access`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.access)
+
+
+            * [`VideoParams.description`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.description)
+
+
+            * [`VideoParams.product_list`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.product_list)
+
+
+            * [`VideoParams.thumbnail_time`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.thumbnail_time)
+
+
+            * [`VideoParams.title`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.title)
+
+
+            * [`VideoParams.video_id`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams.video_id)
+
+
+    * [Module contents](biggo_api.data_models.md#module-biggo_api.data_models)
+
+
 * [biggo_api.enum package](biggo_api.enum.md)
 
 
     * [Submodules](biggo_api.enum.md#submodules)
 
 
-    * [biggo_api.enum.limit module](biggo_api.enum.md#module-biggo_api.enum.limit)
+    * [biggo_api.enum.access module](biggo_api.enum.md#module-biggo_api.enum.access)
 
 
-        * [`Limit`](biggo_api.enum.md#biggo_api.enum.limit.Limit)
+        * [`Access`](biggo_api.enum.md#biggo_api.enum.access.Access)
 
 
-            * [`Limit.everyone`](biggo_api.enum.md#biggo_api.enum.limit.Limit.everyone)
+            * [`Access.PRIVATE`](biggo_api.enum.md#biggo_api.enum.access.Access.PRIVATE)
 
 
-            * [`Limit.limit_myself`](biggo_api.enum.md#biggo_api.enum.limit.Limit.limit_myself)
+            * [`Access.PUBLIC`](biggo_api.enum.md#biggo_api.enum.access.Access.PUBLIC)
 
 
-            * [`Limit.non_public`](biggo_api.enum.md#biggo_api.enum.limit.Limit.non_public)
+            * [`Access.UNLISTED`](biggo_api.enum.md#biggo_api.enum.access.Access.UNLISTED)
+
+
+    * [biggo_api.enum.process_status module](biggo_api.enum.md#module-biggo_api.enum.process_status)
+
+
+        * [`ProcessStatus`](biggo_api.enum.md#biggo_api.enum.process_status.ProcessStatus)
+
+
+            * [`ProcessStatus.COMPLETE`](biggo_api.enum.md#biggo_api.enum.process_status.ProcessStatus.COMPLETE)
+
+
+            * [`ProcessStatus.INQUEUE`](biggo_api.enum.md#biggo_api.enum.process_status.ProcessStatus.INQUEUE)
 
 
     * [Module contents](biggo_api.enum.md#module-biggo_api.enum)
-
-
-* [biggo_api.model package](biggo_api.model.md)
-
-
-    * [Submodules](biggo_api.model.md#submodules)
-
-
-    * [biggo_api.model._base module](biggo_api.model.md#module-biggo_api.model._base)
-
-
-        * [`Base`](biggo_api.model.md#biggo_api.model._base.Base)
-
-
-            * [`Base.from_dict()`](biggo_api.model.md#biggo_api.model._base.Base.from_dict)
-
-
-            * [`Base.to_dict()`](biggo_api.model.md#biggo_api.model._base.Base.to_dict)
-
-
-    * [biggo_api.model.comment module](biggo_api.model.md#module-biggo_api.model.comment)
-
-
-        * [`CommentHistory`](biggo_api.model.md#biggo_api.model.comment.CommentHistory)
-
-
-            * [`CommentHistory.comment_owner_id`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.comment_owner_id)
-
-
-            * [`CommentHistory.comment_owner_name`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.comment_owner_name)
-
-
-            * [`CommentHistory.comment_to_user_id`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.comment_to_user_id)
-
-
-            * [`CommentHistory.comment_to_user_name`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.comment_to_user_name)
-
-
-            * [`CommentHistory.content`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.content)
-
-
-            * [`CommentHistory.date`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.date)
-
-
-            * [`CommentHistory.is_owner`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.is_owner)
-
-
-            * [`CommentHistory.time`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.time)
-
-
-            * [`CommentHistory.video_id`](biggo_api.model.md#biggo_api.model.comment.CommentHistory.video_id)
-
-
-        * [`CommentRequest`](biggo_api.model.md#biggo_api.model.comment.CommentRequest)
-
-
-            * [`CommentRequest.comment_id`](biggo_api.model.md#biggo_api.model.comment.CommentRequest.comment_id)
-
-
-            * [`CommentRequest.content`](biggo_api.model.md#biggo_api.model.comment.CommentRequest.content)
-
-
-            * [`CommentRequest.type_`](biggo_api.model.md#biggo_api.model.comment.CommentRequest.type_)
-
-
-        * [`CommentResponse`](biggo_api.model.md#biggo_api.model.comment.CommentResponse)
-
-
-            * [`CommentResponse.at_user_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.at_user_id)
-
-
-            * [`CommentResponse.can_delete`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.can_delete)
-
-
-            * [`CommentResponse.can_report`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.can_report)
-
-
-            * [`CommentResponse.child_comment_count`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.child_comment_count)
-
-
-            * [`CommentResponse.child_comments`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.child_comments)
-
-
-            * [`CommentResponse.comment`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.comment)
-
-
-            * [`CommentResponse.comment_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.comment_id)
-
-
-            * [`CommentResponse.createtime`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.createtime)
-
-
-            * [`CommentResponse.createtime_timestamp`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.createtime_timestamp)
-
-
-            * [`CommentResponse.genelogy`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.genelogy)
-
-
-            * [`CommentResponse.has_more_comments`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.has_more_comments)
-
-
-            * [`CommentResponse.has_owner_comment`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.has_owner_comment)
-
-
-            * [`CommentResponse.is_delete`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.is_delete)
-
-
-            * [`CommentResponse.is_liked`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.is_liked)
-
-
-            * [`CommentResponse.is_owner`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.is_owner)
-
-
-            * [`CommentResponse.is_verify_ecomm`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.is_verify_ecomm)
-
-
-            * [`CommentResponse.is_verify_user`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.is_verify_user)
-
-
-            * [`CommentResponse.level_count`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.level_count)
-
-
-            * [`CommentResponse.like_count`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.like_count)
-
-
-            * [`CommentResponse.name`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.name)
-
-
-            * [`CommentResponse.parent_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.parent_id)
-
-
-            * [`CommentResponse.parent_user_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.parent_user_id)
-
-
-            * [`CommentResponse.type_`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.type_)
-
-
-            * [`CommentResponse.user_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.user_id)
-
-
-            * [`CommentResponse.user_profile`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.user_profile)
-
-
-            * [`CommentResponse.video_id`](biggo_api.model.md#biggo_api.model.comment.CommentResponse.video_id)
-
-
-        * [`NewComment`](biggo_api.model.md#biggo_api.model.comment.NewComment)
-
-
-            * [`NewComment.content`](biggo_api.model.md#biggo_api.model.comment.NewComment.content)
-
-
-            * [`NewComment.parent_id`](biggo_api.model.md#biggo_api.model.comment.NewComment.parent_id)
-
-
-            * [`NewComment.type_`](biggo_api.model.md#biggo_api.model.comment.NewComment.type_)
-
-
-            * [`NewComment.video_id`](biggo_api.model.md#biggo_api.model.comment.NewComment.video_id)
-
-
-    * [biggo_api.model.product module](biggo_api.model.md#module-biggo_api.model.product)
-
-
-        * [`ProductRequest`](biggo_api.model.md#biggo_api.model.product.ProductRequest)
-
-
-            * [`ProductRequest.nindex`](biggo_api.model.md#biggo_api.model.product.ProductRequest.nindex)
-
-
-            * [`ProductRequest.oid`](biggo_api.model.md#biggo_api.model.product.ProductRequest.oid)
-
-
-        * [`ProductResponse`](biggo_api.model.md#biggo_api.model.product.ProductResponse)
-
-
-            * [`ProductResponse.cata`](biggo_api.model.md#biggo_api.model.product.ProductResponse.cata)
-
-
-            * [`ProductResponse.count_result_product`](biggo_api.model.md#biggo_api.model.product.ProductResponse.count_result_product)
-
-
-            * [`ProductResponse.count_result_store`](biggo_api.model.md#biggo_api.model.product.ProductResponse.count_result_store)
-
-
-            * [`ProductResponse.currency`](biggo_api.model.md#biggo_api.model.product.ProductResponse.currency)
-
-
-            * [`ProductResponse.discount`](biggo_api.model.md#biggo_api.model.product.ProductResponse.discount)
-
-
-            * [`ProductResponse.gallery_count`](biggo_api.model.md#biggo_api.model.product.ProductResponse.gallery_count)
-
-
-            * [`ProductResponse.gallery_images`](biggo_api.model.md#biggo_api.model.product.ProductResponse.gallery_images)
-
-
-            * [`ProductResponse.has_shop`](biggo_api.model.md#biggo_api.model.product.ProductResponse.has_shop)
-
-
-            * [`ProductResponse.has_store_page`](biggo_api.model.md#biggo_api.model.product.ProductResponse.has_store_page)
-
-
-            * [`ProductResponse.history_id`](biggo_api.model.md#biggo_api.model.product.ProductResponse.history_id)
-
-
-            * [`ProductResponse.id`](biggo_api.model.md#biggo_api.model.product.ProductResponse.id)
-
-
-            * [`ProductResponse.image`](biggo_api.model.md#biggo_api.model.product.ProductResponse.image)
-
-
-            * [`ProductResponse.index`](biggo_api.model.md#biggo_api.model.product.ProductResponse.index)
-
-
-            * [`ProductResponse.is_ad`](biggo_api.model.md#biggo_api.model.product.ProductResponse.is_ad)
-
-
-            * [`ProductResponse.is_adult`](biggo_api.model.md#biggo_api.model.product.ProductResponse.is_adult)
-
-
-            * [`ProductResponse.is_multiple_product`](biggo_api.model.md#biggo_api.model.product.ProductResponse.is_multiple_product)
-
-
-            * [`ProductResponse.is_not_found`](biggo_api.model.md#biggo_api.model.product.ProductResponse.is_not_found)
-
-
-            * [`ProductResponse.is_offline`](biggo_api.model.md#biggo_api.model.product.ProductResponse.is_offline)
-
-
-            * [`ProductResponse.location`](biggo_api.model.md#biggo_api.model.product.ProductResponse.location)
-
-
-            * [`ProductResponse.m_max_price`](biggo_api.model.md#biggo_api.model.product.ProductResponse.m_max_price)
-
-
-            * [`ProductResponse.m_text`](biggo_api.model.md#biggo_api.model.product.ProductResponse.m_text)
-
-
-            * [`ProductResponse.more`](biggo_api.model.md#biggo_api.model.product.ProductResponse.more)
-
-
-            * [`ProductResponse.online_notify`](biggo_api.model.md#biggo_api.model.product.ProductResponse.online_notify)
-
-
-            * [`ProductResponse.original_image`](biggo_api.model.md#biggo_api.model.product.ProductResponse.original_image)
-
-
-            * [`ProductResponse.original_price`](biggo_api.model.md#biggo_api.model.product.ProductResponse.original_price)
-
-
-            * [`ProductResponse.original_symbol`](biggo_api.model.md#biggo_api.model.product.ProductResponse.original_symbol)
-
-
-            * [`ProductResponse.price`](biggo_api.model.md#biggo_api.model.product.ProductResponse.price)
-
-
-            * [`ProductResponse.price_diff_real`](biggo_api.model.md#biggo_api.model.product.ProductResponse.price_diff_real)
-
-
-            * [`ProductResponse.price_range_max`](biggo_api.model.md#biggo_api.model.product.ProductResponse.price_range_max)
-
-
-            * [`ProductResponse.price_range_min`](biggo_api.model.md#biggo_api.model.product.ProductResponse.price_range_min)
-
-
-            * [`ProductResponse.product_nindex_price`](biggo_api.model.md#biggo_api.model.product.ProductResponse.product_nindex_price)
-
-
-            * [`ProductResponse.promo_btn`](biggo_api.model.md#biggo_api.model.product.ProductResponse.promo_btn)
-
-
-            * [`ProductResponse.promo_title`](biggo_api.model.md#biggo_api.model.product.ProductResponse.promo_title)
-
-
-            * [`ProductResponse.promo_url`](biggo_api.model.md#biggo_api.model.product.ProductResponse.promo_url)
-
-
-            * [`ProductResponse.provide`](biggo_api.model.md#biggo_api.model.product.ProductResponse.provide)
-
-
-            * [`ProductResponse.purl`](biggo_api.model.md#biggo_api.model.product.ProductResponse.purl)
-
-
-            * [`ProductResponse.seller_credit`](biggo_api.model.md#biggo_api.model.product.ProductResponse.seller_credit)
-
-
-            * [`ProductResponse.subscribe`](biggo_api.model.md#biggo_api.model.product.ProductResponse.subscribe)
-
-
-            * [`ProductResponse.symbol`](biggo_api.model.md#biggo_api.model.product.ProductResponse.symbol)
-
-
-            * [`ProductResponse.target_app`](biggo_api.model.md#biggo_api.model.product.ProductResponse.target_app)
-
-
-            * [`ProductResponse.title`](biggo_api.model.md#biggo_api.model.product.ProductResponse.title)
-
-
-            * [`ProductResponse.type_`](biggo_api.model.md#biggo_api.model.product.ProductResponse.type_)
-
-
-            * [`ProductResponse.uid`](biggo_api.model.md#biggo_api.model.product.ProductResponse.uid)
-
-
-            * [`ProductResponse.url`](biggo_api.model.md#biggo_api.model.product.ProductResponse.url)
-
-
-            * [`ProductResponse.url_dynamic`](biggo_api.model.md#biggo_api.model.product.ProductResponse.url_dynamic)
-
-
-            * [`ProductResponse.url_scheme`](biggo_api.model.md#biggo_api.model.product.ProductResponse.url_scheme)
-
-
-            * [`ProductResponse.user_name`](biggo_api.model.md#biggo_api.model.product.ProductResponse.user_name)
-
-
-            * [`ProductResponse.view_counter`](biggo_api.model.md#biggo_api.model.product.ProductResponse.view_counter)
-
-
-    * [biggo_api.model.store module](biggo_api.model.md#module-biggo_api.model.store)
-
-
-        * [`StoreResponse`](biggo_api.model.md#biggo_api.model.store.StoreResponse)
-
-
-            * [`StoreResponse.name`](biggo_api.model.md#biggo_api.model.store.StoreResponse.name)
-
-
-            * [`StoreResponse.nindex`](biggo_api.model.md#biggo_api.model.store.StoreResponse.nindex)
-
-
-    * [biggo_api.model.user module](biggo_api.model.md#module-biggo_api.model.user)
-
-
-        * [`UserResponse`](biggo_api.model.md#biggo_api.model.user.UserResponse)
-
-
-            * [`UserResponse.all_like_count`](biggo_api.model.md#biggo_api.model.user.UserResponse.all_like_count)
-
-
-            * [`UserResponse.at_user_id`](biggo_api.model.md#biggo_api.model.user.UserResponse.at_user_id)
-
-
-            * [`UserResponse.description`](biggo_api.model.md#biggo_api.model.user.UserResponse.description)
-
-
-            * [`UserResponse.follow_count`](biggo_api.model.md#biggo_api.model.user.UserResponse.follow_count)
-
-
-            * [`UserResponse.follower_count`](biggo_api.model.md#biggo_api.model.user.UserResponse.follower_count)
-
-
-            * [`UserResponse.is_follow`](biggo_api.model.md#biggo_api.model.user.UserResponse.is_follow)
-
-
-            * [`UserResponse.is_my_video`](biggo_api.model.md#biggo_api.model.user.UserResponse.is_my_video)
-
-
-            * [`UserResponse.is_verify_ecomm`](biggo_api.model.md#biggo_api.model.user.UserResponse.is_verify_ecomm)
-
-
-            * [`UserResponse.is_verify_user`](biggo_api.model.md#biggo_api.model.user.UserResponse.is_verify_user)
-
-
-            * [`UserResponse.name`](biggo_api.model.md#biggo_api.model.user.UserResponse.name)
-
-
-            * [`UserResponse.personal_url`](biggo_api.model.md#biggo_api.model.user.UserResponse.personal_url)
-
-
-            * [`UserResponse.profile_image`](biggo_api.model.md#biggo_api.model.user.UserResponse.profile_image)
-
-
-            * [`UserResponse.store_list`](biggo_api.model.md#biggo_api.model.user.UserResponse.store_list)
-
-
-            * [`UserResponse.user_id`](biggo_api.model.md#biggo_api.model.user.UserResponse.user_id)
-
-
-    * [biggo_api.model.video module](biggo_api.model.md#module-biggo_api.model.video)
-
-
-        * [`VideoAnalysis`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis)
-
-
-            * [`VideoAnalysis.cover_image`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.cover_image)
-
-
-            * [`VideoAnalysis.createtime`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.createtime)
-
-
-            * [`VideoAnalysis.createtime_ts`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.createtime_ts)
-
-
-            * [`VideoAnalysis.last_timestamp`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.last_timestamp)
-
-
-            * [`VideoAnalysis.last_timestamp_ts`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.last_timestamp_ts)
-
-
-            * [`VideoAnalysis.length`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.length)
-
-
-            * [`VideoAnalysis.share_count`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.share_count)
-
-
-            * [`VideoAnalysis.statistics_last_day`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.statistics_last_day)
-
-
-            * [`VideoAnalysis.statistics_total`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.statistics_total)
-
-
-            * [`VideoAnalysis.thumbnails`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.thumbnails)
-
-
-            * [`VideoAnalysis.updatetime`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.updatetime)
-
-
-            * [`VideoAnalysis.updatetime_ts`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.updatetime_ts)
-
-
-            * [`VideoAnalysis.video_comment_count`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.video_comment_count)
-
-
-            * [`VideoAnalysis.video_like_count`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.video_like_count)
-
-
-            * [`VideoAnalysis.view_count`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis.view_count)
-
-
-        * [`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)
-
-
-            * [`VideoResponse.at_user_id`](biggo_api.model.md#biggo_api.model.video.VideoResponse.at_user_id)
-
-
-            * [`VideoResponse.created_at`](biggo_api.model.md#biggo_api.model.video.VideoResponse.created_at)
-
-
-            * [`VideoResponse.description`](biggo_api.model.md#biggo_api.model.video.VideoResponse.description)
-
-
-            * [`VideoResponse.has_product`](biggo_api.model.md#biggo_api.model.video.VideoResponse.has_product)
-
-
-            * [`VideoResponse.is_edited`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_edited)
-
-
-            * [`VideoResponse.is_follow`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_follow)
-
-
-            * [`VideoResponse.is_like`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_like)
-
-
-            * [`VideoResponse.is_myvideo`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_myvideo)
-
-
-            * [`VideoResponse.is_private`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_private)
-
-
-            * [`VideoResponse.is_verify_ecomm`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_verify_ecomm)
-
-
-            * [`VideoResponse.is_verify_user`](biggo_api.model.md#biggo_api.model.video.VideoResponse.is_verify_user)
-
-
-            * [`VideoResponse.like_list`](biggo_api.model.md#biggo_api.model.video.VideoResponse.like_list)
-
-
-            * [`VideoResponse.limit`](biggo_api.model.md#biggo_api.model.video.VideoResponse.limit)
-
-
-            * [`VideoResponse.meta`](biggo_api.model.md#biggo_api.model.video.VideoResponse.meta)
-
-
-            * [`VideoResponse.name`](biggo_api.model.md#biggo_api.model.video.VideoResponse.name)
-
-
-            * [`VideoResponse.product_count`](biggo_api.model.md#biggo_api.model.video.VideoResponse.product_count)
-
-
-            * [`VideoResponse.product_list`](biggo_api.model.md#biggo_api.model.video.VideoResponse.product_list)
-
-
-            * [`VideoResponse.profile_image`](biggo_api.model.md#biggo_api.model.video.VideoResponse.profile_image)
-
-
-            * [`VideoResponse.status`](biggo_api.model.md#biggo_api.model.video.VideoResponse.status)
-
-
-            * [`VideoResponse.str_datetime`](biggo_api.model.md#biggo_api.model.video.VideoResponse.str_datetime)
-
-
-            * [`VideoResponse.timestamp`](biggo_api.model.md#biggo_api.model.video.VideoResponse.timestamp)
-
-
-            * [`VideoResponse.url`](biggo_api.model.md#biggo_api.model.video.VideoResponse.url)
-
-
-            * [`VideoResponse.user_id`](biggo_api.model.md#biggo_api.model.video.VideoResponse.user_id)
-
-
-            * [`VideoResponse.video_comment_count`](biggo_api.model.md#biggo_api.model.video.VideoResponse.video_comment_count)
-
-
-            * [`VideoResponse.video_id`](biggo_api.model.md#biggo_api.model.video.VideoResponse.video_id)
-
-
-            * [`VideoResponse.video_like_count`](biggo_api.model.md#biggo_api.model.video.VideoResponse.video_like_count)
-
-
-            * [`VideoResponse.view_count`](biggo_api.model.md#biggo_api.model.video.VideoResponse.view_count)
-
-
-        * [`VideoResponseDownload`](biggo_api.model.md#biggo_api.model.video.VideoResponseDownload)
-
-
-            * [`VideoResponseDownload.mp4`](biggo_api.model.md#biggo_api.model.video.VideoResponseDownload.mp4)
-
-
-        * [`VideoResponseMeta`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta)
-
-
-            * [`VideoResponseMeta.aspect_ratio`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.aspect_ratio)
-
-
-            * [`VideoResponseMeta.cover_image`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.cover_image)
-
-
-            * [`VideoResponseMeta.download`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.download)
-
-
-            * [`VideoResponseMeta.iso8601_length`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.iso8601_length)
-
-
-            * [`VideoResponseMeta.length`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.length)
-
-
-            * [`VideoResponseMeta.thumbnails`](biggo_api.model.md#biggo_api.model.video.VideoResponseMeta.thumbnails)
-
-
-        * [`VideoResponseStatus`](biggo_api.model.md#biggo_api.model.video.VideoResponseStatus)
-
-
-            * [`VideoResponseStatus.process_status`](biggo_api.model.md#biggo_api.model.video.VideoResponseStatus.process_status)
-
-
-            * [`VideoResponseStatus.process_status_kw`](biggo_api.model.md#biggo_api.model.video.VideoResponseStatus.process_status_kw)
-
-
-            * [`VideoResponseStatus.processing`](biggo_api.model.md#biggo_api.model.video.VideoResponseStatus.processing)
-
-
-        * [`VideoSettings`](biggo_api.model.md#biggo_api.model.video.VideoSettings)
-
-
-            * [`VideoSettings.description`](biggo_api.model.md#biggo_api.model.video.VideoSettings.description)
-
-
-            * [`VideoSettings.limit`](biggo_api.model.md#biggo_api.model.video.VideoSettings.limit)
-
-
-            * [`VideoSettings.product_list`](biggo_api.model.md#biggo_api.model.video.VideoSettings.product_list)
-
-
-            * [`VideoSettings.thumbnail_ts`](biggo_api.model.md#biggo_api.model.video.VideoSettings.thumbnail_ts)
-
-
-            * [`VideoSettings.video_id`](biggo_api.model.md#biggo_api.model.video.VideoSettings.video_id)
-
-
-        * [`VideoStatistics`](biggo_api.model.md#biggo_api.model.video.VideoStatistics)
-
-
-            * [`VideoStatistics.average_play_time`](biggo_api.model.md#biggo_api.model.video.VideoStatistics.average_play_time)
-
-
-            * [`VideoStatistics.full_play_percentage`](biggo_api.model.md#biggo_api.model.video.VideoStatistics.full_play_percentage)
-
-
-            * [`VideoStatistics.play_time`](biggo_api.model.md#biggo_api.model.video.VideoStatistics.play_time)
-
-
-            * [`VideoStatistics.unique_user_count`](biggo_api.model.md#biggo_api.model.video.VideoStatistics.unique_user_count)
-
-
-    * [Module contents](biggo_api.model.md#module-biggo_api.model)
 
 
 ## Submodules
@@ -786,4 +333,102 @@ Bases: `Exception`
 
 Base Exception, all the other exceptions are inherited from it
 
+## biggo_api.responses module
+
+This module defines format of response bodies
+
+
+### _class_ biggo_api.responses.BaseResponse(\*\*data)
+Bases: `BaseModel`
+
+Base format of response
+
+
+#### result(_: `bool_ )
+
+### _class_ biggo_api.responses.Error(\*\*data)
+Bases: `BaseModel`
+
+Detailed error code and reason
+
+
+#### code(_: `int_ )
+
+#### message(_: `str_ )
+
+### _class_ biggo_api.responses.ErrorResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of api error
+
+
+#### error(_: `Error_ )
+
+### _class_ biggo_api.responses.UserLikeVideoResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of get user’s like videos
+
+
+#### like_video(_: `UserVideo_ )
+
+### _class_ biggo_api.responses.UserVideo(\*\*data)
+Bases: `BaseModel`
+
+Use video dataset
+
+
+#### data(_: `list`[[`BigGoVideo`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo)_ )
+
+#### size(_: `int_ )
+
+### _class_ biggo_api.responses.UserVideoResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of get user’s videos
+
+
+#### user_video(_: `UserVideo_ )
+
+### _class_ biggo_api.responses.VideoPermissionResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of get video permission
+
+
+#### at_userid(_: `str_ )
+
+#### region(_: `str_ )
+
+#### userid(_: `str_ )
+
+### _class_ biggo_api.responses.VideoResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of get video
+
+
+#### size(_: `int_ )
+
+#### user(_: [`VideoUserInfo`](biggo_api.data_models.md#biggo_api.data_models.user.VideoUserInfo_ )
+
+#### video(_: `list`[[`BigGoVideo`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo)_ )
+
+### _class_ biggo_api.responses.VideoUpdateResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of post/patch video params
+
+
+#### data()
+alias of `ConstrainedListValue`
+
+
+### _class_ biggo_api.responses.VideoUploadResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of upload video
+
+
+#### video_id(_: `str_ )
 ## Module contents

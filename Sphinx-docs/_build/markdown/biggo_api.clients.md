@@ -4,7 +4,7 @@
 
 ## biggo_api.clients._auth module
 
-This module contains classes of OAuth 2.0 grant type and their authorization function
+This module contains classes of OAuth 2.0 grant type and their authorization functions.
 
 
 ### _class_ biggo_api.clients._auth.ClientCredentials(client_id: str, client_secret: str)
@@ -32,22 +32,22 @@ Alias for field number 1
 
 
 ### biggo_api.clients._auth.auth_client_credentials(url, client_credentials, verify=True, refresh_url=None)
-Authorize client by client credentials
+Authorize client by client credentials grant.
 
 
 * **Parameters**
 
     
-    * **url** (`str`) – The url address to fetch token
+    * **url** (`str`) – The url address used to fetch token.
 
 
-    * **client_credentials** (`ClientCredentials`) – A NamedTuple contains client_id and client_secret used for authorization
+    * **client_credentials** (`ClientCredentials`) – A NamedTuple contains client_id and client_secret used for authorization.
 
 
-    * **verify** (`bool`) – Verify SSL certificate
+    * **verify** (`bool`) – Verify SSL certificate.
 
 
-    * **refresh_url** (`Optional`[`str`]) – The url address to refresh access token
+    * **refresh_url** (`Optional`[`str`]) – The url address used to refresh access token.
 
 
 
@@ -58,7 +58,7 @@ Authorize client by client credentials
 
 ### Examples
 
-Use this function to get an OAuth2Session object by client credentials then verify its authorization status.
+Call this function to get an OAuth2Session object using client credentials grant then verify its authorization status.
 
 ```python
 >>> credentials = ClientCredentials(
@@ -74,13 +74,13 @@ True
 
 ## biggo_api.clients._base module
 
-Base API Instance Client
+This module define Base Instance Client of BigGo API.
 
 
 ### _class_ biggo_api.clients._base.BaseInstanceClient(oauth2_session, host_url, verify, region=None)
 Bases: `object`
 
-Base class of BigGo API Instance Client
+Base class of BigGo API Instance Client.
 
 BigGo API Client using OAuth 2.0 ([https://oauth.net/2/](https://oauth.net/2/)).
 
@@ -88,30 +88,30 @@ BigGo API Client using OAuth 2.0 ([https://oauth.net/2/](https://oauth.net/2/)).
 * **Variables**
 
     
-    * **oauth2_session** – An authorized requests_oauthlib.OAuth2Session object
+    * **oauth2_session** – An authorized OAuth2Session object.
 
 
-    * **host_url** – API host
+    * **host_url** – API host.
 
 
-    * **region** – Region of client, leave it None will auto filled by server
+    * **region** – Region of client.
 
 
-    * **verify** – Verify SSL certificate
+    * **verify** – Verify SSL certificate.
 
 
 
 #### request(method, path, headers={}, \*\*kwargs)
-Send request to /api/v1/{path} using given method with keyword arguments
+Send request to /api/v1/{path} using given method with headers and other keyword arguments.
 
 
 * **Parameters**
 
     
-    * **method** (`str`) – The method of this request
+    * **method** (`str`) – The method of this request.
 
 
-    * **path** (`str`) – The sub path of request url after {host}/{api_path}
+    * **path** (`str`) – The sub path of request url.
 
 
 
@@ -122,557 +122,147 @@ Send request to /api/v1/{path} using given method with keyword arguments
 
 ### Examples
 
-send a GET request to ‘[https://api.biggo.com/api/v1/example](https://api.biggo.com/api/v1/example)’
+Send a GET request to ‘[https://api.biggo.com/api/v1/example](https://api.biggo.com/api/v1/example)’.
 
 ```python
 >>> client.request(method='GET', path='example')
 { "result": True, ... }
 ```
 
-## biggo_api.clients._comment module
-
-The API client of video comment
-
-
-### _class_ biggo_api.clients._comment.CommentClient(oauth2_session, host_url, verify, region=None)
-Bases: `BaseInstanceClient`
-
-Client to access video comment API
-
-
-#### create(new_comment)
-Create new comment
-
-
-* **Parameters**
-
-    **new_comment** ([`NewComment`](biggo_api.model.md#biggo_api.model.comment.NewComment)) – A `biggo_api.model.NewComment` object
-
-
-
-* **Return type**
-
-    [`CommentResponse`](biggo_api.model.md#biggo_api.model.comment.CommentResponse)
-
-
-
-#### delete(comment_id)
-Delete comment
-
-
-* **Parameters**
-
-    **comment_id** (`str`) – The id of comment
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### get_comment_history()
-Get comment log
-
-
-* **Return type**
-
-    `list`[[`CommentHistory`](biggo_api.model.md#biggo_api.model.comment.CommentHistory)]
-
-
-
-#### get_list(video_id, parent_id=None)
-Get list of comments
-
-
-* **Parameters**
-
-    
-    * **video_id** (`str`) – The id of video
-
-
-    * **parent_id** (`str`) – The id of parent id (video or comment)
-
-
-
-* **Return type**
-
-    `list`[[`CommentResponse`](biggo_api.model.md#biggo_api.model.comment.CommentResponse)]
-
-
-
-#### like(comment_id)
-Like comment
-
-
-* **Parameters**
-
-    **comment_id** (`str`) – The id of comment
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### unlike(comment_id)
-Unlike comment
-
-
-* **Parameters**
-
-    **comment_id** (`str`) – The id of comment
-
-
-
-#### update(edited_comment)
-Update comment
-
-
-* **Parameters**
-
-    **edited_comment** ([`CommentRequest`](biggo_api.model.md#biggo_api.model.comment.CommentRequest)) – A `biggo_api.model.EditedComment` object
-
-
-
-* **Return type**
-
-    `bool`
-
-
 ## biggo_api.clients._user module
 
-The API client of user
+The API client of user.
 
 
 ### _class_ biggo_api.clients._user.UserClient(oauth2_session, host_url, verify, region=None)
 Bases: `BaseInstanceClient`
 
-Client to access user API
+Client to access user API.
 
 
-#### block(user_id)
-Block user
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### follow(user_id)
-Follow user
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### get_block_list(user_id)
-Get block list
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`UserResponse`](biggo_api.model.md#biggo_api.model.user.UserResponse)]
-
-
-
-#### get_favorite_product_list(user_id)
-Get user’s favorite products
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`ProductResponse`](biggo_api.model.md#biggo_api.model.product.ProductResponse)]
-
-
-
-#### get_follow_user_list(user_id)
-Get following users
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`UserResponse`](biggo_api.model.md#biggo_api.model.user.UserResponse)]
-
-
-
-#### get_follower_count(user_id)
-Get follower count
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `int`
-
-
-
-#### get_follower_list(user_id)
-Get followed users
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`UserResponse`](biggo_api.model.md#biggo_api.model.user.UserResponse)]
-
-
-
-#### get_liked_video_list(user_id)
-Get liked videos
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### get_own_video_list()
+#### get_own_videos()
 Get client’s own videos
 
 
 * **Return type**
 
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
+    [`UserVideoResponse`](biggo_api.md#biggo_api.responses.UserVideoResponse)
 
 
 
-#### get_subscribed_video_list(user_id)
-Get videos from user’s subscribed accounts
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### get_user_video_list(user_id)
+#### get_user_videos(userid)
 Get user’s videos
 
 
 * **Parameters**
 
-    **user_id** (`str`) – The id of user
+    **user_id** – The id of user
 
 
 
 * **Return type**
 
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### is_following(user_id)
-Check if following user
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### remove_follower(follower_id)
-Unfollow user
-
-
-* **Parameters**
-
-    **follower_id** (`str`) – The user id of follower
-
-
-
-#### unblock(user_id)
-Unblock user
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### unfollow(user_id)
-Unfollow user
-
-
-* **Parameters**
-
-    **user_id** (`str`) – The id of user
-
-
-
-* **Return type**
-
-    `bool`
+    [`UserVideoResponse`](biggo_api.md#biggo_api.responses.UserVideoResponse)
 
 
 ## biggo_api.clients._video module
 
-The API client of video
+The API client of video.
 
 
 ### _class_ biggo_api.clients._video.VideoClient(oauth2_session, host_url, verify, region=None)
 Bases: `BaseInstanceClient`
 
-Client to access video API
-
-
-#### analyze(video_id)
-Get video analyzation
-
-
-* **Parameters**
-
-    **video_id** (`str`) – The id of video
-
-
-
-* **Return type**
-
-    [`VideoAnalysis`](biggo_api.model.md#biggo_api.model.video.VideoAnalysis)
-
+Client to access video API.
 
 
 #### delete(video_id)
-Delete video
+Delete video.
 
 
 * **Parameters**
 
-    **video_id** (`str`) – The id of video
+    **video_id** (`str`) – The id of video.
 
 
 
 * **Return type**
 
-    `bool`
+    [`BaseResponse`](biggo_api.md#biggo_api.responses.BaseResponse)
 
 
 
 #### get(video_id)
-Get video
+Get video.
 
 
 * **Parameters**
 
-    **video_id** (`str`) – The id of video
+    **video_id** (`str`) – The id of video.
 
 
 
 * **Return type**
 
-    `Optional`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### get_like_list(video_id)
-Get like list of video
-
-
-* **Parameters**
-
-    **video_id** (`str`) – The id of video
-
-
-
-* **Return type**
-
-    `list`[[`UserResponse`](biggo_api.model.md#biggo_api.model.user.UserResponse)]
+    [`VideoResponse`](biggo_api.md#biggo_api.responses.VideoResponse)
 
 
 
 #### has_permission()
-Verify permission of client to upload video
+Verify permission of client to upload video.
 
 
 * **Return type**
 
-    `bool`
+    [`VideoPermissionResponse`](biggo_api.md#biggo_api.responses.VideoPermissionResponse)
 
 
 
-#### like(video_id)
-Like video
+#### patch_video_params(video_params)
+Update video parameters using PATCH method.
 
 
 * **Parameters**
 
-    **video_id** (`str`) – The id of video
+    **video_params** ([`VideoParams`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams)) – Parameters of video.
 
 
 
 * **Return type**
 
-    `bool`
+    [`VideoUpdateResponse`](biggo_api.md#biggo_api.responses.VideoUpdateResponse)
 
 
 
-#### patch_settings(video_settings)
-Update video settings using PATCH method
+#### post_video_params(video_params)
+Update video parameters using POST method.
 
 
 * **Parameters**
 
-    **video** – The `biggo_api.model.VideoSettings` object
+    **video_params** ([`VideoParams`](biggo_api.data_models.md#biggo_api.data_models.video.VideoParams)) – Parameters of video.
 
 
 
 * **Return type**
 
-    `bool`
-
-
-
-#### post_settings(video_settings)
-Update video settings using POST method.
-
-
-* **Parameters**
-
-    **video** – The `biggo_api.model.VideoSettings` object
-
-
-
-* **Return type**
-
-    `bool`
-
-
-
-#### recommend()
-Get recommended videos
-
-
-* **Return type**
-
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### search(keyword, tag_only=False)
-Search videos by keyword or tag
-
-
-* **Parameters**
-
-    
-    * **keyword** (`str`) – The keyword to search for
-
-
-    * **tag_only** (`bool`) – Set to True will search #target
-
-
-
-* **Return type**
-
-    `list`[[`VideoResponse`](biggo_api.model.md#biggo_api.model.video.VideoResponse)]
-
-
-
-#### unlike(video_id)
-Unlike video
-
-
-* **Parameters**
-
-    **video_id** (`str`) – The id of video
-
-
-
-* **Return type**
-
-    `bool`
+    [`VideoUpdateResponse`](biggo_api.md#biggo_api.responses.VideoUpdateResponse)
 
 
 
 #### upload(file)
-Upload video from local file
+Upload video from local file.
 
 
 * **Parameters**
 
-    **file** (`str`) – The file path & name of video file
+    **file** (`str`) – The file path & name of video file.
 
 
 
 * **Return type**
 
-    `str`
+    [`VideoUploadResponse`](biggo_api.md#biggo_api.responses.VideoUploadResponse)
 
 
 ## biggo_api.clients.api module
@@ -689,9 +279,6 @@ The API Client wraps all types of client
 * **Variables**
 
     
-    * **comment** – See `biggo_api.clients.comment.CommentClient`
-
-
     * **user** – See `biggo_api.clients.user.UserClient`
 
 
