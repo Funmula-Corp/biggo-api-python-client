@@ -60,5 +60,5 @@ VideoUpdateResponse(result=True)
 Delete the video by its id.
 ```Python
 >>> api_client.video.delete(video_id='example_video_id')
-BaseResponse(result=True)
+VideoDeleteResponse(result=True)
 ```

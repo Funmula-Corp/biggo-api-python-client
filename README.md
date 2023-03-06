@@ -96,7 +96,7 @@ Get the video again, the description is updated.
 Finally, delete this example video:
 ```Python
 >>> api_client.video.delete(video_id=video_id)
-BaseResponse(result=True)
+VideoDeleteResponse(result=True)
 ```
 When you try to get the deleted video, it will raise an BigGoAPIError:
 ```Python
