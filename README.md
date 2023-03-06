@@ -80,10 +80,10 @@ Initialize the object by filling video_id and description into it:
 >>> video_params
 VideoParams(access=None, description='my first video', product_list=None, thumbnail_time=None, title=None, video_id='example_id')
 ```
-There is a lot of `None` value in the object `video_params`, just ignore them because the `patch_video_params` function will remove all the fields whose value is `None` when sending request.  
+There is a lot of `None` value in the object `video_params`, just ignore them because the `partial_update` function will remove all the fields whose value is `None` when sending request.  
 Now, call the update function to update the description of video:
 ```Python
->>> api_client.video.patch_video_params(video_params=video_params)
+>>> api_client.video.partial_update(video_params=video_params)
 VideoUpdateResponse(result=True)
 ```
 Get the video again, the description is updated.
@@ -98,12 +98,12 @@ Finally, delete this example video:
 >>> api_client.video.delete(video_id=video_id)
 BaseResponse(result=True)
 ```
-When you try to get the deleted video, it will raise and BigGoAPIException:
+When you try to get the deleted video, it will raise an BigGoAPIError:
 ```Python
 >>> api_client.video.get(video_id)
 Traceback (most recent call last):
   ...
-biggo_api.exception.BigGoAPIException: [1004] The video does not exist.
+biggo_api.exception.BigGoAPIError1004 The video does not exist.
 ```
 ### User
 #### Get your own videos

@@ -60,10 +60,10 @@
             * [`VideoClient.has_permission()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.has_permission)
 
 
-            * [`VideoClient.patch_video_params()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.patch_video_params)
+            * [`VideoClient.partial_update()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.partial_update)
 
 
-            * [`VideoClient.post_video_params()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.post_video_params)
+            * [`VideoClient.update()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.update)
 
 
             * [`VideoClient.upload()`](biggo_api.clients.md#biggo_api.clients._video.VideoClient.upload)
@@ -75,6 +75,12 @@
         * [`APIClient`](biggo_api.clients.md#biggo_api.clients.api.APIClient)
 
 
+            * [`APIClient.user`](biggo_api.clients.md#biggo_api.clients.api.APIClient.user)
+
+
+            * [`APIClient.video`](biggo_api.clients.md#biggo_api.clients.api.APIClient.video)
+
+
     * [Module contents](biggo_api.clients.md#module-biggo_api.clients)
 
 
@@ -82,6 +88,120 @@
 
 
     * [Submodules](biggo_api.data_models.md#submodules)
+
+
+    * [biggo_api.data_models.product module](biggo_api.data_models.md#module-biggo_api.data_models.product)
+
+
+        * [`BigGoVideoProduct`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct)
+
+
+            * [`BigGoVideoProduct.currency`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.currency)
+
+
+            * [`BigGoVideoProduct.discount`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.discount)
+
+
+            * [`BigGoVideoProduct.gallery_count`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.gallery_count)
+
+
+            * [`BigGoVideoProduct.gallery_images`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.gallery_images)
+
+
+            * [`BigGoVideoProduct.has_shop`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.has_shop)
+
+
+            * [`BigGoVideoProduct.has_store_page`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.has_store_page)
+
+
+            * [`BigGoVideoProduct.history_id`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.history_id)
+
+
+            * [`BigGoVideoProduct.id`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.id)
+
+
+            * [`BigGoVideoProduct.index`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.index)
+
+
+            * [`BigGoVideoProduct.is_ad`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.is_ad)
+
+
+            * [`BigGoVideoProduct.is_adult`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.is_adult)
+
+
+            * [`BigGoVideoProduct.is_multiple_product`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.is_multiple_product)
+
+
+            * [`BigGoVideoProduct.is_not_found`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.is_not_found)
+
+
+            * [`BigGoVideoProduct.is_offline`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.is_offline)
+
+
+            * [`BigGoVideoProduct.location`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.location)
+
+
+            * [`BigGoVideoProduct.m_max_price`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.m_max_price)
+
+
+            * [`BigGoVideoProduct.m_text`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.m_text)
+
+
+            * [`BigGoVideoProduct.more`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.more)
+
+
+            * [`BigGoVideoProduct.online_notify`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.online_notify)
+
+
+            * [`BigGoVideoProduct.original_image`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.original_image)
+
+
+            * [`BigGoVideoProduct.original_price`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.original_price)
+
+
+            * [`BigGoVideoProduct.original_symbol`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.original_symbol)
+
+
+            * [`BigGoVideoProduct.price_diff_real`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.price_diff_real)
+
+
+            * [`BigGoVideoProduct.provide`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.provide)
+
+
+            * [`BigGoVideoProduct.purl`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.purl)
+
+
+            * [`BigGoVideoProduct.seller_credit`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.seller_credit)
+
+
+            * [`BigGoVideoProduct.subscribe`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.subscribe)
+
+
+            * [`BigGoVideoProduct.type_`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.type_)
+
+
+            * [`BigGoVideoProduct.uid`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.uid)
+
+
+            * [`BigGoVideoProduct.url`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.url)
+
+
+            * [`BigGoVideoProduct.username`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProduct.username)
+
+
+        * [`BigGoVideoProductBase`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProductBase)
+
+
+            * [`BigGoVideoProductBase.image`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProductBase.image)
+
+
+            * [`BigGoVideoProductBase.price`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProductBase.price)
+
+
+            * [`BigGoVideoProductBase.symbol`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProductBase.symbol)
+
+
+            * [`BigGoVideoProductBase.title`](biggo_api.data_models.md#biggo_api.data_models.product.BigGoVideoProductBase.title)
 
 
     * [biggo_api.data_models.user module](biggo_api.data_models.md#module-biggo_api.data_models.user)
@@ -325,23 +445,31 @@
 
 ## biggo_api.exception module
 
-This module defind exceptions of BigGo API Client
+This module defind error of BigGo API.
 
 
-### _exception_ biggo_api.exception.BigGoAPIException(code, message)
+### _exception_ biggo_api.exception.BigGoAPIError(response)
 Bases: `Exception`
 
-Base Exception, all the other exceptions are inherited from it
+BigGo API Error object for all 4xx responses with error in response body.
 
+
+* **Variables**
+
+    **response** – The error response.
+
+
+
+#### response(_: `ErrorResponse_ )
 ## biggo_api.responses module
 
-This module defines format of response bodies
+This module defines formats of response bodies.
 
 
 ### _class_ biggo_api.responses.BaseResponse(\*\*data)
 Bases: `BaseModel`
 
-Base format of response
+Base format of response.
 
 
 #### result(_: `bool_ )
@@ -349,7 +477,7 @@ Base format of response
 ### _class_ biggo_api.responses.Error(\*\*data)
 Bases: `BaseModel`
 
-Detailed error code and reason
+Detailed error code and reason.
 
 
 #### code(_: `int_ )
@@ -359,23 +487,15 @@ Detailed error code and reason
 ### _class_ biggo_api.responses.ErrorResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of api error
+Response of API error.
 
 
 #### error(_: `Error_ )
 
-### _class_ biggo_api.responses.UserLikeVideoResponse(\*\*data)
-Bases: `BaseResponse`
-
-Response of get user’s like videos
-
-
-#### like_video(_: `UserVideo_ )
-
 ### _class_ biggo_api.responses.UserVideo(\*\*data)
 Bases: `BaseModel`
 
-Use video dataset
+User video dataset.
 
 
 #### data(_: `list`[[`BigGoVideo`](biggo_api.data_models.md#biggo_api.data_models.video.BigGoVideo)_ )
@@ -385,15 +505,21 @@ Use video dataset
 ### _class_ biggo_api.responses.UserVideoResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of get user’s videos
+Response of getting user’s videos.
 
 
 #### user_video(_: `UserVideo_ )
 
+### _class_ biggo_api.responses.VideoDeleteResponse(\*\*data)
+Bases: `BaseResponse`
+
+Response of deleting video.
+
+
 ### _class_ biggo_api.responses.VideoPermissionResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of get video permission
+Response of getting video permission.
 
 
 #### at_userid(_: `str_ )
@@ -405,7 +531,7 @@ Response of get video permission
 ### _class_ biggo_api.responses.VideoResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of get video
+Response of getting video.
 
 
 #### size(_: `int_ )
@@ -417,7 +543,7 @@ Response of get video
 ### _class_ biggo_api.responses.VideoUpdateResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of post/patch video params
+Response of posting/patching video params.
 
 
 #### data()
@@ -427,7 +553,7 @@ alias of `ConstrainedListValue`
 ### _class_ biggo_api.responses.VideoUploadResponse(\*\*data)
 Bases: `BaseResponse`
 
-Response of upload video
+Response of uploading video.
 
 
 #### video_id(_: `str_ )

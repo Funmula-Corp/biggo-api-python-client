@@ -1,5 +1,5 @@
 <!-- biggo_api documentation master file, created by
-sphinx-quickstart on Fri Mar  3 15:38:10 2023.
+sphinx-quickstart on Mon Mar  6 17:12:51 2023.
 You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive. -->
 # Welcome to biggo_api’s documentation!
@@ -43,6 +43,9 @@ contain the root `toctree` directive. -->
             * [Submodules](biggo_api.data_models.md#submodules)
 
 
+            * [biggo_api.data_models.product module](biggo_api.data_models.md#module-biggo_api.data_models.product)
+
+
             * [biggo_api.data_models.user module](biggo_api.data_models.md#module-biggo_api.data_models.user)
 
 
@@ -73,7 +76,10 @@ contain the root `toctree` directive. -->
     * [biggo_api.exception module](biggo_api.md#module-biggo_api.exception)
 
 
-        * [`BigGoAPIException`](biggo_api.md#biggo_api.exception.BigGoAPIException)
+        * [`BigGoAPIError`](biggo_api.md#biggo_api.exception.BigGoAPIError)
+
+
+            * [`BigGoAPIError.response`](biggo_api.md#biggo_api.exception.BigGoAPIError.response)
 
 
     * [biggo_api.responses module](biggo_api.md#module-biggo_api.responses)
@@ -100,12 +106,6 @@ contain the root `toctree` directive. -->
             * [`ErrorResponse.error`](biggo_api.md#biggo_api.responses.ErrorResponse.error)
 
 
-        * [`UserLikeVideoResponse`](biggo_api.md#biggo_api.responses.UserLikeVideoResponse)
-
-
-            * [`UserLikeVideoResponse.like_video`](biggo_api.md#biggo_api.responses.UserLikeVideoResponse.like_video)
-
-
         * [`UserVideo`](biggo_api.md#biggo_api.responses.UserVideo)
 
 
@@ -119,6 +119,9 @@ contain the root `toctree` directive. -->
 
 
             * [`UserVideoResponse.user_video`](biggo_api.md#biggo_api.responses.UserVideoResponse.user_video)
+
+
+        * [`VideoDeleteResponse`](biggo_api.md#biggo_api.responses.VideoDeleteResponse)
 
 
         * [`VideoPermissionResponse`](biggo_api.md#biggo_api.responses.VideoPermissionResponse)

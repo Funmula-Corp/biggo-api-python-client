@@ -22,15 +22,6 @@ biggo\_api.clients.\_base module
    :show-inheritance:
    :private-members:
 
-biggo\_api.clients.\_comment module
------------------------------------
-
-.. automodule:: biggo_api.clients._comment
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :private-members:
-
 biggo\_api.clients.\_user module
 --------------------------------
 

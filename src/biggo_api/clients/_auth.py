@@ -28,12 +28,13 @@ def auth_client_credentials(
 
     Args:
         url: The url address used to fetch token.
-        client_credentials: A `NamedTuple` contains client_id and client_secret used for authorization.
+        client_credentials: A `NamedTuple` contains client_id and client_secret.
         verify: Verify SSL certificate.
         refresh_url: The url address used to refresh access token.
 
     Examples:
-        Call this function to get an `OAuth2Session` object using client credentials grant then verify its authorization status.
+        Call this function to get an `OAuth2Session` using client credentials grant.
+        Verify its authorization status.
 
         >>> credentials = ClientCredentials(
         ...     client_id='CLIENT_ID', client_secret='CLIENT_SECRET'

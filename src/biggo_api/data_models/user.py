@@ -1,4 +1,4 @@
-"""This module defines data classes of user"""
+"""This module defines data classes of user."""
 
 from typing import Union
 
@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 
 
 class VideoUserInfo(BaseModel):
+    """This class represents the user data in get video response."""
     all_like_count: int
     at_userid: str
     description: str

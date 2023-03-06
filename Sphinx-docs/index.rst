@@ -1,5 +1,5 @@
 .. biggo_api documentation master file, created by
-   sphinx-quickstart on Fri Mar  3 15:38:10 2023.
+   sphinx-quickstart on Mon Mar  6 17:12:51 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

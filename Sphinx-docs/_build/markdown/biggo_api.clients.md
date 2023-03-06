@@ -41,7 +41,7 @@ Authorize client by client credentials grant.
     * **url** (`str`) – The url address used to fetch token.
 
 
-    * **client_credentials** (`ClientCredentials`) – A NamedTuple contains client_id and client_secret used for authorization.
+    * **client_credentials** (`ClientCredentials`) – A NamedTuple contains client_id and client_secret.
 
 
     * **verify** (`bool`) – Verify SSL certificate.
@@ -58,7 +58,8 @@ Authorize client by client credentials grant.
 
 ### Examples
 
-Call this function to get an OAuth2Session object using client credentials grant then verify its authorization status.
+Call this function to get an OAuth2Session using client credentials grant.
+Verify its authorization status.
 
 ```python
 >>> credentials = ClientCredentials(
@@ -102,7 +103,7 @@ BigGo API Client using OAuth 2.0 ([https://oauth.net/2/](https://oauth.net/2/)).
 
 
 #### request(method, path, headers={}, \*\*kwargs)
-Send request to /api/v1/{path} using given method with headers and other keyword arguments.
+Send request to /api/v1/{path} using given method, headers and other keyword arguments.
 
 
 * **Parameters**
@@ -112,6 +113,19 @@ Send request to /api/v1/{path} using given method with headers and other keyword
 
 
     * **path** (`str`) – The sub path of request url.
+
+
+
+* **Raises**
+
+    
+    * [**BigGoAPIError**](biggo_api.md#biggo_api.exception.BigGoAPIError)**(****response status 4xx****, ****error in response body****)** – Client error.
+
+
+    * **HTTPError****(****response status 4xx**** or ****5xx****)** – Client(rarely) or server error.
+
+
+    * **HTTPError****(****response status 2xx**** or ****3xx****)** – Result in response body is False.
 
 
 
@@ -140,23 +154,13 @@ Bases: `BaseInstanceClient`
 Client to access user API.
 
 
-#### get_own_videos()
-Get client’s own videos
-
-
-* **Return type**
-
-    [`UserVideoResponse`](biggo_api.md#biggo_api.responses.UserVideoResponse)
-
-
-
-#### get_user_videos(userid)
-Get user’s videos
+#### get_own_videos(page=1)
+Get client’s own videos.
 
 
 * **Parameters**
 
-    **user_id** – The id of user
+    **page** (`int`) – The page of user videos. (20 videos in one page)
 
 
 
@@ -164,6 +168,52 @@ Get user’s videos
 
     [`UserVideoResponse`](biggo_api.md#biggo_api.responses.UserVideoResponse)
 
+
+### Examples
+
+Assume user has 22 videos, get videos from page 1 to page 3.
+
+```python
+>>> user_client.get_user_videos(page=1)
+UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...), BigGoVideo(...), ...], size=22))
+>>> user_client.get_user_videos(page=2)
+UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...), BigGoVideo(...)], size=22))
+>>> user_client.get_user_videos(page=3)
+UserVideoResponse(result=True, user_video=UserVideo(data=[], size=22))
+```
+
+
+#### get_user_videos(userid, page=1)
+Get user’s videos.
+
+
+* **Parameters**
+
+    
+    * **user_id** – The id of user.
+
+
+    * **page** (`int`) – The page of user videos. (20 videos in one page)
+
+
+
+* **Return type**
+
+    [`UserVideoResponse`](biggo_api.md#biggo_api.responses.UserVideoResponse)
+
+
+### Examples
+
+Assume user has 22 videos, get videos from page 1 to page 3.
+
+```python
+>>> user_client.get_user_videos(userid='USERID', page=1)
+UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...), BigGoVideo(...), ...], size=22))
+>>> user_client.get_user_videos(userid='USERID', page=2)
+UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...), BigGoVideo(...)], size=22))
+>>> user_client.get_user_videos(userid='USERID', page=3)
+UserVideoResponse(result=True, user_video=UserVideo(data=[], size=22))
+```
 
 ## biggo_api.clients._video module
 
@@ -177,7 +227,7 @@ Client to access video API.
 
 
 #### delete(video_id)
-Delete video.
+Delete video by its id.
 
 
 * **Parameters**
@@ -188,12 +238,19 @@ Delete video.
 
 * **Return type**
 
-    [`BaseResponse`](biggo_api.md#biggo_api.responses.BaseResponse)
+    [`VideoDeleteResponse`](biggo_api.md#biggo_api.responses.VideoDeleteResponse)
 
+
+### Examples
+
+```python
+>>> video_client.delete(video_id='VIDEO_ID')
+VideoDeleteResponse(result=True)
+```
 
 
 #### get(video_id)
-Get video.
+Get video by its id.
 
 
 * **Parameters**
@@ -207,6 +264,16 @@ Get video.
     [`VideoResponse`](biggo_api.md#biggo_api.responses.VideoResponse)
 
 
+### Examples
+
+```python
+>>> video_response = video_client.get(video_id='VIDEO_ID')
+>>> video_response
+VideoResponse(result=True, user=VideoUserInfo(...), video=[BigGoVideo(...)], size=1)
+>>> video_response.video
+BigGoVideo(video_id='VIDEO_ID', ...)
+```
+
 
 #### has_permission()
 Verify permission of client to upload video.
@@ -217,8 +284,15 @@ Verify permission of client to upload video.
     [`VideoPermissionResponse`](biggo_api.md#biggo_api.responses.VideoPermissionResponse)
 
 
+### Examples
 
-#### patch_video_params(video_params)
+```python
+>>> video_client.has_permission()
+VideoPermissionResponse(result=True, at_userid='BigGoUserID', region='tw', userid='USERID')
+```
+
+
+#### partial_update(video_params)
 Update video parameters using PATCH method.
 
 
@@ -233,9 +307,25 @@ Update video parameters using PATCH method.
     [`VideoUpdateResponse`](biggo_api.md#biggo_api.responses.VideoUpdateResponse)
 
 
+### Examples
 
-#### post_video_params(video_params)
+Initialize VideoParams object then patch it.
+
+```python
+>>> video_params = VideoParams(
+...     video_id='VIDEO_ID',
+...     access=Access.UNLISTED,
+... )
+>>> video_client.partial_update(video_params=video_params)
+VideoUpdateResponse(result=True)
+```
+
+
+#### update(video_params)
 Update video parameters using POST method.
+
+In this method, video_id, access, description and title in VideoParams are required.
+Use partial_update method to update partial parameters.
 
 
 * **Parameters**
@@ -248,6 +338,21 @@ Update video parameters using POST method.
 
     [`VideoUpdateResponse`](biggo_api.md#biggo_api.responses.VideoUpdateResponse)
 
+
+### Examples
+
+Initialize VideoParams object then post it.
+
+```python
+>>> video_params = VideoParams(
+...     video_id='VIDEO_ID',
+...     access=Access.PRIVATE,
+...     description='DESCRIPTION',
+...     title='TITLE',
+... )
+>>> video_client.update(video_params=video_params)
+VideoUpdateResponse(result=True)
+```
 
 
 #### upload(file)
@@ -265,24 +370,42 @@ Upload video from local file.
     [`VideoUploadResponse`](biggo_api.md#biggo_api.responses.VideoUploadResponse)
 
 
+### Examples
+
+Upload local video file at current working directory.
+
+```python
+>>> video_client.upload(file='./SAMPLE_VIDEO.mp4')
+VideoUploadResponse(result=True, video_id='VIDEO_ID')
+```
+
 ## biggo_api.clients.api module
 
-This module define a general api client contains clients for instances
+This module define a general api client contains clients of instances.
 
 
 ### _class_ biggo_api.clients.api.APIClient(client_credentials, host_url='https://api.biggo.com', region=None, verify=True, \*\*kwargs)
 Bases: `object`
 
-The API Client wraps all types of client
+The API client wraps all types of clients.
+
+The API client will be authorized using given grant type.
 
 
 * **Variables**
 
     
-    * **user** – See `biggo_api.clients.user.UserClient`
+    * **params** – Parameters of API client, including oauth_session, host_url, region and verify.
 
 
-    * **video** – See `biggo_api.clients.video.VideoClient`
+    * **user** – User client.
 
 
+    * **video** – Video client.
+
+
+
+#### user(_: `UserClient_ )
+
+#### video(_: `VideoClient_ )
 ## Module contents

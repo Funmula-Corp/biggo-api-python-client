@@ -4,7 +4,7 @@ from enum import Enum, auto
 
 
 class Access(Enum):
-    """Type of access"""
+    """Types of access"""
     PUBLIC = 0
     PRIVATE = auto()
     UNLISTED = auto()

@@ -39,7 +39,7 @@ Video parameters would be filled into the [VideoParams](/src/biggo_api/data_mode
 ...     description='DESCRIPTION',
 ...     title='TITLE',
 ... )
->>> api_client.video.post_video_params(video_params=video_params)
+>>> api_client.video.update(video_params=video_params)
 VideoUpdateResponse(result=True)
 ```
 ## Patch Video Parameters
@@ -53,7 +53,7 @@ Video parameters would be filled into the [VideoParams](/src/biggo_api/data_mode
 ...     video_id='example_video_id',
 ...     access=Access.UNLISTED,
 ... )
->>> api_client.video.patch_video_params(video_params=video_params)
+>>> api_client.video.partial_update(video_params=video_params)
 VideoUpdateResponse(result=True)
 ```
 ## Delete Video
