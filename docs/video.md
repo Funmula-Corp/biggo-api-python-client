@@ -3,8 +3,8 @@
   - [Check Upload Permission of Client](#check-upload-permission-of-client)
   - [Upload Video](#upload-video)
   - [Get Video](#get-video)
-  - [Post Video Parameters](#post-video-parameters)
-  - [Patch Video Parameters](#patch-video-parameters)
+  - [Update Video Parameters](#update-video-parameters)
+  - [Partially Update Video Parameters](#partially-update-video-parameters)
   - [Delete Video](#delete-video)
 ## Check Upload Permission of Client
 To Check if client has permission to upload video.
@@ -25,7 +25,7 @@ Get the [Video](/src/biggo_api/data_models/video.py) by its id.
 >>> get_video_resp.video
 [BigGoVideo(...)]
 ```
-## Post Video Parameters
+## Update Video Parameters
 Parameters include video_id, access, description, product list, thumbnail_time and title.  
 Video parameters would be filled into the [VideoParams](/src/biggo_api/data_models/video.py) object.  
 **All parameters are required**.  
@@ -42,7 +42,7 @@ Video parameters would be filled into the [VideoParams](/src/biggo_api/data_mode
 >>> api_client.video.update(video_params=video_params)
 VideoUpdateResponse(result=True)
 ```
-## Patch Video Parameters
+## Partially Update Video Parameters
 Update partial parameters of the video.  
 Video parameters would be filled into the [VideoParams](/src/biggo_api/data_models/video.py) object.  
 **At least one parameter except video_id is required**.  
