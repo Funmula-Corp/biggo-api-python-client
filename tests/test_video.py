@@ -7,14 +7,14 @@ from requests.exceptions import HTTPError
 from biggo_api.clients import APIClient, ClientCredentials
 from biggo_api.clients._video import VideoClient
 from biggo_api.enum import Access
-from biggo_api.exception import BigGoAPIException
+from biggo_api.exception import BigGoAPIError
 from biggo_api.data_models import BigGoVideo, VideoParams
 
 
 CLIENT_ID = environ.get('CLIENT_ID')
 CLIENT_SECRET = environ.get('CLIENT_SECRET')
 TEST_HOST = environ.get('TEST_HOST')
-FILENAME = './sample_video/BigGoDecoration2.mp4'
+FILENAME = './sample_video/test_video1.mp4'
 NOTFOUND_FILENAME = './sample_video/NotExistVideo.mp4'
 RUNTIME_DATA: dict[str, Union[APIClient, str]] = {
     'client': None,
@@ -50,11 +50,11 @@ class TestVideoClient(unittest.TestCase):
         self.assertNotEqual(video_upload_response.video_id, '')
         return video_upload_response.video_id
 
-    def __post_video_params(self, video_params: VideoParams) -> None:
+    def __update_video_params(self, video_params: VideoParams) -> None:
         video_client = self.__get_video_client()
-        post_video_params_response = \
-            video_client.post_video_params(video_params=video_params)
-        self.assertTrue(post_video_params_response.result)
+        update_response = \
+            video_client.update(video_params=video_params)
+        self.assertTrue(update_response.result)
         pass
 
     def __get_video(self, video_id: str) -> BigGoVideo:
@@ -64,11 +64,11 @@ class TestVideoClient(unittest.TestCase):
         video = get_video_response.video[0]
         return video
 
-    def __patch_video_params(self, video_params: VideoParams) -> None:
+    def __partial_update_video_params(self, video_params: VideoParams) -> None:
         video_client = self.__get_video_client()
-        patch_video_params_response = \
-            video_client.patch_video_params(video_params=video_params)
-        self.assertTrue(patch_video_params_response.result)
+        partial_update_response = \
+            video_client.partial_update(video_params=video_params)
+        self.assertTrue(partial_update_response.result)
         pass
 
     def __delete_video(self, video_id: str) -> None:
@@ -92,26 +92,26 @@ class TestVideoClient(unittest.TestCase):
         video = self.__get_video(video_id=video_id)
         self.assertEqual(video.video_id, video_id)
         self.__delete_video(video_id=video_id)
-        with self.assertRaises(BigGoAPIException) as ex:
+        with self.assertRaises(BigGoAPIError) as ex:
             deleted_video = self.__get_video(video_id=video_id)
             pass
         raised_exc = ex.exception
-        self.assertEqual(raised_exc.code, 1004)
+        self.assertEqual(raised_exc.response.error.code, 1004)
         pass
 
     def test_upload_duplicate_video(self):
         video_id = self.__upload_video(file=FILENAME)
-        with self.assertRaises((HTTPError, BigGoAPIException)) as ex:
+        with self.assertRaises((HTTPError, BigGoAPIError)) as ex:
             self.__upload_video(file=FILENAME)
             pass
         raised_exc = ex.exception
-        if isinstance(raised_exc, BigGoAPIException):
-            self.assertEqual(ex.exception.code == 1002)
+        if isinstance(raised_exc, BigGoAPIError):
+            self.assertEqual(raised_exc.response.error.code, 1002)
             pass
         self.__delete_video(video_id=video_id)
         pass
 
-    def test_post_video_params(self):
+    def test_update(self):
         video_id = self.__upload_video(file=FILENAME)
         video_params = VideoParams(
             video_id=video_id,
@@ -119,7 +119,7 @@ class TestVideoClient(unittest.TestCase):
             description='test setup',
             title='test post title',
         )
-        self.__post_video_params(video_params=video_params)
+        self.__update_video_params(video_params=video_params)
         video = self.__get_video(video_id=video_id)
         self.assertEqual(video.video_id, video_params.video_id)
         self.assertEqual(video.description, video_params.description)
@@ -127,7 +127,7 @@ class TestVideoClient(unittest.TestCase):
         self.__delete_video(video_id=video_id)
         pass
 
-    def test_patch_video_params(self):
+    def test_partial_update(self):
         video_id = self.__upload_video(file=FILENAME)
         video_params = VideoParams(
             video_id=video_id,
@@ -135,12 +135,12 @@ class TestVideoClient(unittest.TestCase):
             description='test post description',
             title='test post title',
         )
-        self.__patch_video_params(video_params=video_params)
+        self.__partial_update_video_params(video_params=video_params)
         video_params_v2 = VideoParams(
             video_id=video_id,
             access=Access.UNLISTED,
         )
-        self.__patch_video_params(video_params=video_params_v2)
+        self.__partial_update_video_params(video_params=video_params_v2)
         updated_video = self.__get_video(video_id=video_id)
         self.assertEqual(updated_video.access, video_params_v2.access)
         self.__delete_video(video_id=video_id)
