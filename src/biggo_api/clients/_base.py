@@ -3,10 +3,12 @@
 from logging import getLogger
 from typing import Optional
 
+from pydantic import ValidationError
 from requests.exceptions import HTTPError
 from requests_oauthlib import OAuth2Session
 
-from biggo_api.exception import BigGoAPIException
+from biggo_api.exception import BigGoAPIError
+from biggo_api.responses import ErrorResponse
 
 
 logger = getLogger(__name__)
@@ -43,11 +45,16 @@ class BaseInstanceClient:
         pass
 
     def request(self, method: str, path: str, headers: dict = {}, **kwargs) -> dict:
-        """Send request to /api/v1/{path} using given method with headers and other keyword arguments.
+        """Send request to /api/v1/{path} using given method, headers and other keyword arguments.
 
         Args:
             method: The method of this request.
             path: The sub path of request url.
+
+        Raises:
+            BigGoAPIError(response status 4xx, error in response body): Client error.
+            HTTPError(response status 4xx or 5xx): Client(rarely) or server error.
+            HTTPError(response status 2xx or 3xx): Result in response body is False.
 
         Examples:
             Send a GET request to 'https://api.biggo.com/api/v1/example'.
@@ -80,17 +87,21 @@ class BaseInstanceClient:
             # return parsed response if result = True
             return response_json
         # check if response status is client error with error message
-        if (
-            400 <= response.status_code < 500 and
-            'error' in response_json and
-            'message' in response_json['error']
-        ):
-            raise BigGoAPIException(**response_json['error'])
+        if 400 <= response.status_code < 500:
+            try:
+                error_response = ErrorResponse.parse_obj(response_json)
+                raise BigGoAPIError(response=error_response)
+            except ValidationError as ex:
+                logger.warning(
+                    "unable to parse 4xx API error: %s", response_json,
+                )
+                pass
+            pass
         # raise server error if status code = 5xx
         response.raise_for_status()
         # raise HTTPError when status code is not 4xx or 5xx but result = False
         raise HTTPError(
-            f'{response.status_code} result equals False',
+            f'status is {response.status_code} but result is False',
             response=response,
         )
     pass

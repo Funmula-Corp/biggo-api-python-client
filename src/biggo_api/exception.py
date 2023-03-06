@@ -1,13 +1,18 @@
-"""This module defind exceptions of BigGo API Client"""
+"""This module defind error of BigGo API."""
+
+from biggo_api.responses import ErrorResponse
 
 
-class BigGoAPIException(Exception):
-    """Base Exception, all the other exceptions are inherited from it"""
+class BigGoAPIError(Exception):
+    """BigGo API Error object for all 4xx responses with error in response body.
 
-    def __init__(self, code: int, message: str):
-        # Call the base class constructor with the parameters it needs
-        error_message = f'[{code}] {message}'
-        super().__init__(error_message)
-        self.code = code
+    Attributes:
+        response: The error response.
+    """
+    response: ErrorResponse
+
+    def __init__(self, response: ErrorResponse):
+        self.response = response
+        super().__init__(self.response)
         pass
     pass
