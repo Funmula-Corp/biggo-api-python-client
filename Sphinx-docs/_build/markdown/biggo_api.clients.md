@@ -122,7 +122,7 @@ Send request to /api/v1/{path} using given method, headers and other keyword arg
     * [**BigGoAPIError**](biggo_api.md#biggo_api.exception.BigGoAPIError)**(****response status 4xx****, ****error in response body****)** – Client error.
 
 
-    * **HTTPError****(****response status 4xx**** or ****5xx****)** – Client(rarely) or server error.
+    * **HTTPError****(****response status 4xx**** or ****5xx****)** – Parse failed client error or server error.
 
 
     * **HTTPError****(****response status 2xx**** or ****3xx****)** – Result in response body is False.

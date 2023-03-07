@@ -1,11 +1,10 @@
 # Video Client Usage
-- [Video Client Usage](#video-client-usage)
-  - [Check Upload Permission of Client](#check-upload-permission-of-client)
-  - [Upload Video](#upload-video)
-  - [Get Video](#get-video)
-  - [Update Video Parameters](#update-video-parameters)
-  - [Partially Update Video Parameters](#partially-update-video-parameters)
-  - [Delete Video](#delete-video)
+- [Check Upload Permission of Client](#check-upload-permission-of-client)
+- [Upload Video](#upload-video)
+- [Get Video](#get-video)
+- [Update Video Parameters](#update-video-parameters)
+- [Partially Update Video Parameters](#partially-update-video-parameters)
+- [Delete Video](#delete-video)
 ## Check Upload Permission of Client
 To Check if client has permission to upload video.
 ```Python

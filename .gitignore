@@ -3,6 +3,7 @@
 tests/*.env
 tests/local.py
 requirements.txt
+future
 
 # ---> Python
 # Byte-compiled / optimized / DLL files

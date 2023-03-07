@@ -1,7 +1,6 @@
 # User Client Usage
-- [User Client Usage](#user-client-usage)
-  - [Get Own Videos](#get-own-videos)
-  - [Get User's Video](#get-users-video)
+- [Get Own Videos](#get-own-videos)
+- [Get User's Video](#get-users-video)
 ## Get Own Videos
 Get client's own videos
 ```Python
