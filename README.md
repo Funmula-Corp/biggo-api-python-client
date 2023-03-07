@@ -42,7 +42,7 @@ You can use a similar approach to access all BigGo API resources using the api c
 # access video api
 >>> video_client = api_client.video
 # get video information
->>> info = video.get(video_id='video_id')
+>>> info = video_client.get(video_id='video_id')
 # access /user api
 >>> user_client = api_client.user
 # get client's own videos at page 1
