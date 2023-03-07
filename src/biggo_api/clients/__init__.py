@@ -1,3 +1,2 @@
-from .comment import CommentClient
-from .user import UserClient
-from .video import VideoClient
+from ._auth import ClientCredentials
+from .api import APIClient

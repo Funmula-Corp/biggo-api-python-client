@@ -17,6 +17,7 @@ setup(
     python_requires=">=3.9",
     install_requires=[
         'oauthlib',
+        'pydantic',
         'requests_oauthlib',
     ],
     keywords=['BigGo', 'Funmula', 'API', 'Open-Authentication', 'Social-Media', 'Social-Networking'],

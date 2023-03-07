@@ -1,138 +1,102 @@
-"""Base API Client"""
+"""This module define Base Instance Client of BigGo API."""
 
 from logging import getLogger
+from typing import Optional
 
-from oauthlib.oauth2 import BackendApplicationClient
+from pydantic import ValidationError
 from requests.exceptions import HTTPError
 from requests_oauthlib import OAuth2Session
 
-from biggo_api.exception import BigGoAPIException
+from biggo_api.exception import BigGoAPIError
+from biggo_api.responses import ErrorResponse
 
 
 logger = getLogger(__name__)
 
 
-class BaseClient:
-    """Base class of BigGo API Client
+class BaseInstanceClient:
+    """Base class of BigGo API Instance Client.
 
     BigGo API Client using OAuth 2.0 (https://oauth.net/2/).
 
-    Support grant types & required parameters:
-    - Client Credentials:
-        - client_id
-        - client_secret
+    Attributes:
+        oauth2_session: An authorized `OAuth2Session` object.
+        host_url: API host.
+        region: Region of client.
+        verify: Verify SSL certificate.
     """
 
     def __init__(
         self,
-        client_id: str,
-        client_secret: str,
-        host_url: str = 'https://api.biggo.com',
-        verify: bool = True,
-        **kwargs,
+        oauth2_session: OAuth2Session,
+        host_url: str,
+        verify: bool,
+        region: Optional[str] = None,
     ):
-        """Construct Client
-
-        Args:
-            client_id: id for authentication
-            client_secret: secret for authentication
-            host_url: api host
-            verify: Verify SSL certificate
-        """
         self.__host_url = host_url
-        self.__auth_path = 'auth/v1'
         self.__api_path = 'api/v1'
+        self.region = region
         self.verify = verify
 
-        self.__client_id = client_id
-        self.__client_secret = client_secret
-        self.__oauth: OAuth2Session = None
-
-        # check if client_id and client_secret provided
-        if client_id and client_secret:
-            # authorized with client credential grant
-            self.__auth_client_credentials()
-            pass
-        if kwargs:
-            logger.warning("ignoring keyword arguments: %s", kwargs)
-            pass
+        # check if oauth2_session exist and authorized
+        if not (isinstance(oauth2_session, OAuth2Session) and oauth2_session.authorized):
+            raise ValueError("Invalid oauth2_session")
+        self.__oauth2_session = oauth2_session
         pass
 
-    def __auth_client_credentials(self) -> None:
-        """Authorize by client credentials
-
-        Raises:
-            InvalidClientIdError: authorization failed
-        """
-        # compose refresh token url
-        refresh_url = '/'.join(
-            [self.__host_url, self.__auth_path, 'refresh_token'],
-        )
-        # init oauth 2.0 session
-        self.__oauth = OAuth2Session(
-            client=BackendApplicationClient(client_id=self.__client_id),
-            auto_refresh_url=refresh_url,
-        )
-        # compose token url in the format: {host_url}/{auth_path}/token
-        url = '/'.join([self.__host_url, self.__auth_path, 'token'])
-        # setup params: token url, auth(id & secret)
-        params = {
-            'token_url': url,
-            'auth': (self.__client_id, self.__client_secret),
-            'verify': self.verify,
-        }
-        # get access token from authorized server
-        self.__oauth.fetch_token(**params)
-        pass
-
-    def request(self, method: str, path: str, **kwargs) -> dict:
-        """Send request to /api/v1/{path} using given method with keyword arguments
+    def request(self, method: str, path: str, headers: dict = {}, **kwargs) -> dict:
+        """Send request to /api/v1/{path} using given method, headers and other keyword arguments.
 
         Args:
-            method: The method of this request
-            path: The sub path of request url after {host}/{api_path}
+            method: The method of this request.
+            path: The sub path of request url.
 
-        Returns:
-            A dict object (parsed response)
+        Raises:
+            BigGoAPIError(response status 4xx, error in response body): Client error.
+            HTTPError(response status 4xx or 5xx): Parse failed client error or server error.
+            HTTPError(response status 2xx or 3xx): Result in response body is False.
+
+        Examples:
+            Send a GET request to 'https://api.biggo.com/api/v1/example'.
+
+            >>> client.request(method='GET', path='example')
+            { "result": True, ... }
         """
         # compose request url in the format: {host_url}/{api_path}/{path}
         url = '/'.join([self.__host_url, self.__api_path, path])
-        # setup parameters that sent to request function
+        # add region to header if provided
+        if self.region is not None:
+            headers = {'region': self.region} | headers
+            pass
+        # set request parameters
         params = {
             'method': method,
             'url': url,
             'verify': self.verify,
+            'headers': headers,
             **kwargs,
         }
-        response = self.__oauth.request(**params)
+        response = self.__oauth2_session.request(**params)
         logger.debug(
             'status: %s, content: %s',
             response.status_code, response.content,
         )
-        response_json: dict = response.json()
-        if response_json.get('result', False):
-            return response_json
-        if (
-            400 <= response.status_code < 500 and
-            'error' in response_json and
-            'message' in response_json['error']
-        ):
-            raise BigGoAPIException(**response_json['error'])
+        # check if response status is client error with error message
+        if 400 <= response.status_code < 500:
+            try:
+                error_response = ErrorResponse.parse_raw(response.content)
+                raise BigGoAPIError(response=error_response)
+            except Exception:
+                logger.warning(
+                    "unable to parse 4xx API error: %s", response.content,
+                )
+                pass
+            pass
+        # raise server error if status code = 5xx
         response.raise_for_status()
+        # raise HTTPError when status code is not 4xx or 5xx but result = False
         raise HTTPError(
-            f'{response.status_code} Result equals False',
+            f'status is {response.status_code} but result is False',
             response=response,
         )
-
-    @property
-    def authorized(self) -> bool:
-        """Check client authorization status
-
-        Returns:
-            A bool value represents authorization status. True if authorized, otherwise False.
-        """
-        if self.__oauth:
-            return self.__oauth.authorized
-        logger.warning("OAuth2Session undefined")
-        return False
     pass
