@@ -2,28 +2,18 @@
 BigGo API Python Client is a video API written in python. We have two APIs included so far and will update more APIs and the function in each of them in the short future.  
 **BigGo API Python Client currently support Python 3.9+.**
 
-- [Features](#features)
-  - [Video API](#video-api)
-  - [User API](#user-api)
 - [Getting Started](#getting-started)
   - [Installaiton](#installaiton)
   - [Initializing API Client](#initializing-api-client)
   - [Accessing BigGo API](#accessing-biggo-api)
     - [Video](#video)
     - [User](#user)
+- [Features](#features)
+  - [Video API](#video-api)
+  - [User API](#user-api)
 - [Document](#document)
 - [API Reference](#api-reference)
 - [LICENSE](#license)
-
-## Features
-This library currently supports the following BigGo APIs:
-### Video API
-- Uploading videos.
-- Getting video information - Using video ID to get the information for both video and the uploader. (ex: user ID, description, etc. )
-- Editing video settings - Editing video title, description, accessibility, etc.
-- Deleting videos.
-### User API
-- Getting video information on all uploaded videos on the personal video list.
 
 ## Getting Started
 ### Installaiton
@@ -125,6 +115,16 @@ The user api allows you to get your own videos:
 >>> api_client.user.get_own_videos()
 UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...)], size=1))
 ```
+
+## Features
+This library currently supports the following BigGo APIs:
+### Video API
+- Uploading videos.
+- Getting video information - Using video ID to get the information for both video and the uploader. (ex: user ID, description, etc. )
+- Editing video settings - Editing video title, description, accessibility, etc.
+- Deleting videos.
+### User API
+- Getting video information on all uploaded videos on the personal video list.
 
 ## Document
 See full user guide in [docs folder](docs)  
