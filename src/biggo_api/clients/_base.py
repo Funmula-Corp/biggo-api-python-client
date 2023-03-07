@@ -53,7 +53,7 @@ class BaseInstanceClient:
 
         Raises:
             BigGoAPIError(response status 4xx, error in response body): Client error.
-            HTTPError(response status 4xx or 5xx): Client(rarely) or server error.
+            HTTPError(response status 4xx or 5xx): Parse failed client error or server error.
             HTTPError(response status 2xx or 3xx): Result in response body is False.
 
         Examples:
@@ -81,19 +81,14 @@ class BaseInstanceClient:
             'status: %s, content: %s',
             response.status_code, response.content,
         )
-        # get parsed response
-        response_json: dict = response.json()
-        if response_json.get('result', False):
-            # return parsed response if result = True
-            return response_json
         # check if response status is client error with error message
         if 400 <= response.status_code < 500:
             try:
-                error_response = ErrorResponse.parse_obj(response_json)
+                error_response = ErrorResponse.parse_raw(response.content)
                 raise BigGoAPIError(response=error_response)
-            except ValidationError as ex:
+            except Exception:
                 logger.warning(
-                    "unable to parse 4xx API error: %s", response_json,
+                    "unable to parse 4xx API error: %s", response.content,
                 )
                 pass
             pass
