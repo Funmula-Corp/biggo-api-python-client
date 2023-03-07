@@ -62,3 +62,7 @@ Delete the video by its id.
 >>> api_client.video.delete(video_id='example_video_id')
 VideoDeleteResponse(result=True)
 ```
+
+---
+[ :arrow_up: Back to top](#video-client-usage)  
+[ :leftwards_arrow_with_hook: Back to docs](..)

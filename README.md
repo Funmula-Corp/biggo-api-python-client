@@ -1,4 +1,4 @@
-# B!gGo API Python Client
+# BigGo API Python Client
 
 The official Python client library for BigGo API.
 
@@ -39,20 +39,17 @@ First, try to upload a local video file:
 >>> video_upload_resp
 VideoUploadResponse(result=True, video_id='example_id')
 ```
-Store video_id so we can use it later.
-```Python
->>> video_id = video_upload_resp.video_id
-```
+The id of this newly uploaded video is `example_id`.
 #### Get Video
 Next, try to get the video from APIClient:
 ```Python
->>> video_get_resp = api_client.video.get(video_id=video_id)
+>>> video_get_resp = api_client.video.get(video_id='example_id')
 >>> video_get_resp
 VideoResponse(result=True, user=VideoUserInfo(...), video=[BigGoVideo(...)], size=1)
 ```
 The data we need is in the attribute `video`:
 ```Python
->>> video = VideoResponse.video[0]
+>>> video = video_get_resp.video[0]
 ```
 Now, we have a BigGoVideo object called video. We can get all the information we need from this object.
 ```Python
@@ -74,7 +71,7 @@ Import the data model `VideoParams` first:
 Initialize the object by filling video_id and description into it:
 ```Python
 >>> video_params = VideoParams(
-...     video_id=video_id,
+...     video_id='example_id',
 ...     description='my first video',
 ... )
 >>> video_params
@@ -95,22 +92,22 @@ Get the video again, the description is updated.
 #### Delete the video
 Finally, delete this example video:
 ```Python
->>> api_client.video.delete(video_id=video_id)
+>>> api_client.video.delete(video_id='example_id')
 VideoDeleteResponse(result=True)
 ```
 When you try to get the deleted video, it will raise an BigGoAPIError:
 ```Python
->>> api_client.video.get(video_id)
+>>> api_client.video.get(video_id='example_id')
 Traceback (most recent call last):
   ...
-biggo_api.exception.BigGoAPIError1004 The video does not exist.
+biggo_api.exception.BigGoAPIError: result=False error=Error(code=1004, message='The video does not exist.')
 ```
 ### User
 #### Get your own videos
 The user api allows you to get your own videos:
 ```Python
 >>> api_client.user.get_own_videos()
-UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...), ...], size=1))
+UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...)], size=1))
 ```
 
 ## Document
@@ -121,3 +118,6 @@ See [Sphinx-docs folder](Sphinx-docs/_build/markdown/index.md)
 
 ## LICENSE
 [MIT](LICENSE)
+
+---
+[ :arrow_up: Back to top](#biggo-api-python-client)  
