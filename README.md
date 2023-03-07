@@ -1,6 +1,6 @@
 # BigGo API Python Client
-BigGo API Python Client is a video API written in python. We have two APIs included so far and will update more APIs and the function in each of them in the short future.
-Support Python 3.9+.
+BigGo API Python Client is a video API written in python. We have two APIs included so far and will update more APIs and the function in each of them in the short future.  
+**BigGo API Python Client currently support Python 3.9+.**
 
 - [Features](#features)
   - [Video API](#video-api)
