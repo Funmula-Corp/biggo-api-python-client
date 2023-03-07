@@ -21,4 +21,4 @@ UserVideoResponse(result=True, user_video=UserVideo(data=[BigGoVideo(...)], size
 
 ---
 [ :arrow_up: Back to top](#user-client-usage)  
-[ :leftwards_arrow_with_hook: Back to docs](..)
+[ :leftwards_arrow_with_hook: Back to docs](../docs)
