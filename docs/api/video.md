@@ -64,4 +64,4 @@ VideoDeleteResponse(result=True)
 
 ---
 [ :arrow_up: Back to top](#video-client-usage)  
-[ :leftwards_arrow_with_hook: Back to docs](../docs)
+[ :leftwards_arrow_with_hook: Back to docs](../../docs)
