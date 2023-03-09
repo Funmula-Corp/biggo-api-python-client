@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="biggo-api",
-    version="0.1.0",
+    version="0.2.0",
     author="FUNMULA CO., LIMITED",
     author_email="info@funmula.com",
     description="client for accessing biggo api",
@@ -16,6 +16,7 @@ setup(
     packages=find_packages(where="src"),
     python_requires=">=3.9",
     install_requires=[
+        'async_oauthlib',
         'oauthlib',
         'pydantic',
         'requests_oauthlib',
@@ -34,6 +35,9 @@ setup(
         'Operating System :: POSIX',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
         'Topic :: Communications',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
