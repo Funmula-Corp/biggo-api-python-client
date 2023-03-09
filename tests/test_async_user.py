@@ -3,9 +3,9 @@ from time import sleep
 from typing import Union
 import unittest
 
-from biggo_api.clients import APIClient, ClientCredentials
-from biggo_api.clients._user import UserClient
-from biggo_api.clients._video import VideoClient
+from biggo_api.async_clients import APIClient, ClientCredentials
+from biggo_api.async_clients._user import UserClient
+from biggo_api.async_clients._video import VideoClient
 from biggo_api.data_models import BigGoVideoProductBase
 from biggo_api.enum import ProcessStatus
 
@@ -16,59 +16,67 @@ TEST_HOST = environ.get('TEST_HOST')
 FILENAME = './sample_video/test_video1.mp4'
 NOTFOUND_FILENAME = './sample_video/NotExistVideo.mp4'
 RUNTIME_DATA: dict[str, Union[APIClient, str]] = {
-    'client': None,
+    'api_client': None,
     'video_id': None,
     'comment_id': None,
 }
 VIDEO_PER_PAGE = 20
 
 
-class TestVideoClient(unittest.TestCase):
-    def setUp(self) -> None:
-        self.__init_api_client()
+class TestVideoClient(unittest.IsolatedAsyncioTestCase):
+    async def asyncSetUp(self) -> None:
+        await self.__init_api_client()
         pass
 
-    def __init_api_client(self) -> None:
+    async def asyncTearDown(self) -> None:
+        if RUNTIME_DATA['api_client']:
+            api_client: APIClient = RUNTIME_DATA['api_client']
+            await api_client.close()
+            pass
+        pass
+
+    async def __init_api_client(self) -> None:
         client_credentials = ClientCredentials(
             client_id=CLIENT_ID, client_secret=CLIENT_SECRET,
         )
         if TEST_HOST is not None:
-            RUNTIME_DATA['client'] = APIClient(
-                client_credentials=client_credentials,
+            RUNTIME_DATA['api_client'] = APIClient(
                 host_url=TEST_HOST,
                 verify=False,
             )
+            pass
         else:
-            RUNTIME_DATA['client'] = APIClient(
-                client_credentials=client_credentials,
-            )
+            RUNTIME_DATA['api_client'] = APIClient()
+            pass
+        await RUNTIME_DATA['api_client'].authorize(client_credentials=client_credentials)
         pass
 
-    def __get_video_client(self) -> VideoClient:
-        return RUNTIME_DATA['client'].video
+    async def __get_video_client(self) -> VideoClient:
+        return RUNTIME_DATA['api_client'].video
 
-    def __get_user_client(self) -> UserClient:
-        return RUNTIME_DATA['client'].user
+    async def __get_user_client(self) -> UserClient:
+        return RUNTIME_DATA['api_client'].user
 
-    def __upload_video(self, file: str) -> str:
+    async def __upload_video(self, file: str) -> str:
         """Return video_id"""
-        video_client = self.__get_video_client()
-        video_upload_response = video_client.upload(file=file)
+        video_client = await self.__get_video_client()
+        video_upload_response = await video_client.upload(file=file)
         self.assertTrue(video_upload_response.result)
         self.assertNotEqual(video_upload_response.video_id, '')
         return video_upload_response.video_id
 
-    def __delete_video(self, video_id: str) -> None:
-        video_client = self.__get_video_client()
-        self.assertTrue(video_client.delete(video_id=video_id).result)
+    async def __delete_video(self, video_id: str) -> None:
+        video_client = await self.__get_video_client()
+        video_delete_response = await video_client.delete(video_id=video_id)
+        self.assertTrue(video_delete_response.result)
         pass
 
-    def test_get_own_videos(self):
-        user_client = self.__get_user_client()
+    async def test_get_own_videos(self):
+        user_client = await self.__get_user_client()
         page = 1
         own_videos: set[str] = set()
         while True:
-            get_own_videos_response = user_client.get_own_videos(page=page)
+            get_own_videos_response = await user_client.get_own_videos(page=page)
             videos = get_own_videos_response.user_video.data
             video_ids: list[str] = []
             for video in videos:
@@ -88,21 +96,21 @@ class TestVideoClient(unittest.TestCase):
         self.assertEqual(len(own_videos), total_video_count)
         pass
 
-    def test_get_own_videos_upload(self):
-        video_id = self.__upload_video(file=FILENAME)
+    async def test_get_own_videos_upload(self):
+        video_id = await self.__upload_video(file=FILENAME)
         sleep(5)
-        user_client = self.__get_user_client()
+        user_client = await self.__get_user_client()
         page = 1
         own_videos: set[str] = set()
         while True:
-            get_own_videos_response = user_client.get_own_videos(page=page)
+            get_own_videos_response = await user_client.get_own_videos(page=page)
             videos = get_own_videos_response.user_video.data
-            # check processing video
+            #check processing video
             video0 = videos[0]
             if video0.status.process_status != ProcessStatus.COMPLETE:
                 sleep(5)
                 continue
-            # finish check processing video
+            #finish check processing video
             video_ids: list[str] = []
             for video in videos:
                 video_ids.append(video.video_id)
@@ -119,17 +127,17 @@ class TestVideoClient(unittest.TestCase):
             page += 1
             pass
         self.assertIn(video_id, own_videos)
-        self.__delete_video(video_id=video_id)
+        await self.__delete_video(video_id=video_id)
         pass
 
-    def test_get_user_videos(self):
-        user_client = self.__get_user_client()
-        userid = self.__get_video_client().has_permission().userid
+    async def test_get_user_videos(self):
+        user_client = await self.__get_user_client()
+        video_client = await self.__get_video_client()
+        userid = (await video_client.has_permission()).userid
         page = 1
         user_videos: set[str] = set()
         while True:
-            get_user_videos_response = user_client.get_user_videos(
-                userid=userid, page=page)
+            get_user_videos_response = await user_client.get_user_videos(userid=userid, page=page)
             videos = get_user_videos_response.user_video.data
             video_ids: list[str] = []
             for video in videos:
@@ -149,23 +157,25 @@ class TestVideoClient(unittest.TestCase):
         self.assertEqual(len(user_videos), total_video_count)
         pass
 
-    def test_get_user_videos_upload(self):
-        video_id = self.__upload_video(file=FILENAME)
+    async def test_get_user_videos_upload(self):
+        video_id = await self.__upload_video(file=FILENAME)
         sleep(5)
-        userid = self.__get_video_client().has_permission().userid
-        user_client = self.__get_user_client()
+        user_client = await self.__get_user_client()
+        video_client = await self.__get_video_client()
+        userid = (await video_client.has_permission()).userid
+        user_client = await self.__get_user_client()
         page = 1
         user_videos: set[str] = set()
         while True:
             get_user_videos_response = \
-                user_client.get_user_videos(userid=userid, page=page)
+                await user_client.get_user_videos(userid=userid, page=page)
             videos = get_user_videos_response.user_video.data
             # check processing video
             video0 = videos[0]
             if video0.status.process_status != ProcessStatus.COMPLETE:
                 sleep(5)
                 continue
-            # finish check processing video
+            #finish check processing video
             video_ids: list[str] = []
             for video in videos:
                 video_ids.append(video.video_id)
@@ -182,6 +192,6 @@ class TestVideoClient(unittest.TestCase):
             page += 1
             pass
         self.assertIn(video_id, user_videos)
-        self.__delete_video(video_id=video_id)
+        await self.__delete_video(video_id=video_id)
         pass
     pass

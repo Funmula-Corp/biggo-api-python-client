@@ -1,5 +1,5 @@
 <!-- biggo_api documentation master file, created by
-sphinx-quickstart on Tue Mar  7 10:48:15 2023.
+sphinx-quickstart on Thu Mar  9 11:29:02 2023.
 You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive. -->
 # Welcome to biggo_api’s documentation!
@@ -11,6 +11,30 @@ contain the root `toctree` directive. -->
 
 
     * [Subpackages](biggo_api.md#subpackages)
+
+
+        * [biggo_api.async_clients package](biggo_api.async_clients.md)
+
+
+            * [Submodules](biggo_api.async_clients.md#submodules)
+
+
+            * [biggo_api.async_clients._auth module](biggo_api.async_clients.md#module-biggo_api.async_clients._auth)
+
+
+            * [biggo_api.async_clients._base module](biggo_api.async_clients.md#module-biggo_api.async_clients._base)
+
+
+            * [biggo_api.async_clients._user module](biggo_api.async_clients.md#module-biggo_api.async_clients._user)
+
+
+            * [biggo_api.async_clients._video module](biggo_api.async_clients.md#module-biggo_api.async_clients._video)
+
+
+            * [biggo_api.async_clients.api module](biggo_api.async_clients.md#module-biggo_api.async_clients.api)
+
+
+            * [Module contents](biggo_api.async_clients.md#module-biggo_api.async_clients)
 
 
         * [biggo_api.clients package](biggo_api.clients.md)
@@ -122,6 +146,9 @@ contain the root `toctree` directive. -->
 
 
         * [`VideoDeleteResponse`](biggo_api.md#biggo_api.responses.VideoDeleteResponse)
+
+
+            * [`VideoDeleteResponse.result`](biggo_api.md#biggo_api.responses.VideoDeleteResponse.result)
 
 
         * [`VideoPermissionResponse`](biggo_api.md#biggo_api.responses.VideoPermissionResponse)

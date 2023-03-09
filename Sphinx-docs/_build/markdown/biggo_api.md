@@ -3,6 +3,87 @@
 ## Subpackages
 
 
+* [biggo_api.async_clients package](biggo_api.async_clients.md)
+
+
+    * [Submodules](biggo_api.async_clients.md#submodules)
+
+
+    * [biggo_api.async_clients._auth module](biggo_api.async_clients.md#module-biggo_api.async_clients._auth)
+
+
+        * [`auth_client_credentials()`](biggo_api.async_clients.md#biggo_api.async_clients._auth.auth_client_credentials)
+
+
+    * [biggo_api.async_clients._base module](biggo_api.async_clients.md#module-biggo_api.async_clients._base)
+
+
+        * [`BaseInstanceClient`](biggo_api.async_clients.md#biggo_api.async_clients._base.BaseInstanceClient)
+
+
+            * [`BaseInstanceClient.request()`](biggo_api.async_clients.md#biggo_api.async_clients._base.BaseInstanceClient.request)
+
+
+    * [biggo_api.async_clients._user module](biggo_api.async_clients.md#module-biggo_api.async_clients._user)
+
+
+        * [`UserClient`](biggo_api.async_clients.md#biggo_api.async_clients._user.UserClient)
+
+
+            * [`UserClient.get_own_videos()`](biggo_api.async_clients.md#biggo_api.async_clients._user.UserClient.get_own_videos)
+
+
+            * [`UserClient.get_user_videos()`](biggo_api.async_clients.md#biggo_api.async_clients._user.UserClient.get_user_videos)
+
+
+    * [biggo_api.async_clients._video module](biggo_api.async_clients.md#module-biggo_api.async_clients._video)
+
+
+        * [`VideoClient`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient)
+
+
+            * [`VideoClient.delete()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.delete)
+
+
+            * [`VideoClient.get()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.get)
+
+
+            * [`VideoClient.has_permission()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.has_permission)
+
+
+            * [`VideoClient.partial_update()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.partial_update)
+
+
+            * [`VideoClient.update()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.update)
+
+
+            * [`VideoClient.upload()`](biggo_api.async_clients.md#biggo_api.async_clients._video.VideoClient.upload)
+
+
+    * [biggo_api.async_clients.api module](biggo_api.async_clients.md#module-biggo_api.async_clients.api)
+
+
+        * [`APIClient`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient)
+
+
+            * [`APIClient.authorize()`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient.authorize)
+
+
+            * [`APIClient.close()`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient.close)
+
+
+            * [`APIClient.params`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient.params)
+
+
+            * [`APIClient.user`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient.user)
+
+
+            * [`APIClient.video`](biggo_api.async_clients.md#biggo_api.async_clients.api.APIClient.video)
+
+
+    * [Module contents](biggo_api.async_clients.md#module-biggo_api.async_clients)
+
+
 * [biggo_api.clients package](biggo_api.clients.md)
 
 
@@ -515,6 +596,8 @@ Bases: `BaseResponse`
 
 Response of deleting video.
 
+
+#### result(_: `bool_ )
 
 ### _class_ biggo_api.responses.VideoPermissionResponse(\*\*data)
 Bases: `BaseResponse`
