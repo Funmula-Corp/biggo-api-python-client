@@ -1,9 +1,9 @@
 """This module define Base Instance Client of BigGo API."""
 
+from json import JSONDecodeError
 from logging import getLogger
 from typing import Optional
 
-from pydantic import ValidationError
 from requests.exceptions import HTTPError
 from requests_oauthlib import OAuth2Session
 
@@ -81,16 +81,27 @@ class BaseInstanceClient:
             'status: %s, content: %s',
             response.status_code, response.content,
         )
+        try:
+            # get parsed response
+            response_json: dict = response.json()
+            if response_json.get('result', False):
+                # return parsed response if result = True
+                return response_json
+        except JSONDecodeError:
+            logger.warning("unable to parse API response: %s", response.content)
+            pass
+        pass
         # check if response status is client error with error message
         if 400 <= response.status_code < 500:
             try:
                 error_response = ErrorResponse.parse_raw(response.content)
-                raise BigGoAPIError(response=error_response)
             except Exception:
                 logger.warning(
                     "unable to parse 4xx API error: %s", response.content,
                 )
                 pass
+            finally:
+                raise BigGoAPIError(response=error_response)
             pass
         # raise server error if status code = 5xx
         response.raise_for_status()
