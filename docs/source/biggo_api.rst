@@ -7,6 +7,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   biggo_api.async_clients
    biggo_api.clients
    biggo_api.data_models
    biggo_api.enum

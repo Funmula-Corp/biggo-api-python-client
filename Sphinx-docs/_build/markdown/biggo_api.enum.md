@@ -7,7 +7,7 @@
 This module defines an enum of access type
 
 
-### _class_ biggo_api.enum.access.Access(value, names=None, \*, module=None, qualname=None, type=None, start=1, boundary=None)
+### _class_ biggo_api.enum.access.Access(value)
 Bases: `Enum`
 
 Types of access
@@ -23,7 +23,7 @@ Types of access
 This module defines an enum of process status.
 
 
-### _class_ biggo_api.enum.process_status.ProcessStatus(value, names=None, \*, module=None, qualname=None, type=None, start=1, boundary=None)
+### _class_ biggo_api.enum.process_status.ProcessStatus(value)
 Bases: `Enum`
 
 Types of process status

@@ -1,5 +1,7 @@
 # BigGo API Python Client
 BigGo API Python Client is a video API written in python. We have two APIs included so far and will update more APIs and the function in each of them in the short future.  
+This package also support asyncio, but the [Getting Started](#getting-started) part only illustrate synchronous usage.  
+For asynchronous usage, see [async docs](./docs/async.md).  
 **BigGo API Python Client currently support Python 3.9+.**
 
 - [Getting Started](#getting-started)
