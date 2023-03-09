@@ -1,5 +1,5 @@
 from os import environ
-from typing import Optional, Union
+from typing import Union
 import unittest
 
 from requests.exceptions import HTTPError
@@ -24,22 +24,27 @@ RUNTIME_DATA: dict[str, Union[APIClient, str]] = {
 
 
 class TestVideoClient(unittest.TestCase):
-    def __get_video_client(self) -> VideoClient:
-        if RUNTIME_DATA['client'] is None:
-            client_credentials = ClientCredentials(
-                client_id=CLIENT_ID, client_secret=CLIENT_SECRET,
+    def setUp(self) -> None:
+        self.__init_api_client()
+        pass
+
+    def __init_api_client(self) -> None:
+        client_credentials = ClientCredentials(
+            client_id=CLIENT_ID, client_secret=CLIENT_SECRET,
+        )
+        if TEST_HOST is not None:
+            RUNTIME_DATA['client'] = APIClient(
+                client_credentials=client_credentials,
+                host_url=TEST_HOST,
+                verify=False,
             )
-            if TEST_HOST is not None:
-                RUNTIME_DATA['client'] = APIClient(
-                    client_credentials=client_credentials,
-                    host_url=TEST_HOST,
-                    verify=False,
-                )
-            else:
-                RUNTIME_DATA['client'] = APIClient(
-                    client_credentials=client_credentials,
-                )
-            pass
+        else:
+            RUNTIME_DATA['client'] = APIClient(
+                client_credentials=client_credentials,
+            )
+        pass
+
+    def __get_video_client(self) -> VideoClient:
         return RUNTIME_DATA['client'].video
 
     def __upload_video(self, file: str) -> str:
