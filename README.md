@@ -1,4 +1,10 @@
 # BigGo API Python Client
+[![License-MIT](https://img.shields.io/github/license/Funmula-Corp/biggo-api-python-client)](https://github.com/Funmula-Corp/biggo-api-python-client/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/pypi/dm/biggo-api)](https://pypistats.org/packages/biggo-api)
+[![Supported Python Version](https://img.shields.io/pypi/pyversions/biggo-api)](https://pypi.org/project/biggo-api)
+[![Wheel](https://img.shields.io/pypi/wheel/biggo-api)](https://pypi.org/project/biggo-api)
+[![Pypi-Status](https://img.shields.io/pypi/status/biggo-api.svg)](https://pypi.org/project/biggo-api)
+
 BigGo API Python Client is a video API written in python. We have two APIs included so far and will update more APIs and the function in each of them in the short future.  
 This package also support asyncio, but the [Getting Started](#getting-started) part only illustrate synchronous usage.  
 For asynchronous usage, see [async docs](./docs/async.md).  
