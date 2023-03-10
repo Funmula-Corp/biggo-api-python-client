@@ -41,7 +41,7 @@ Next, initialize an authorized API client using client credentials:
 
 You can refer to this guide to get the client id and secret
 
-[Funmula/guideFunmula-Corp/guide](https://github.com/Funmula-Corp/guide)
+[Funmula/guide](https://github.com/Funmula-Corp/guide)
 
 ### Accessing BigGo API
 You can use a similar approach to access all BigGo API resources using the api client. Simply access the instance client of the desired resource. For example:
