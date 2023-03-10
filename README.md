@@ -54,8 +54,8 @@ You can use a similar approach to access all BigGo API resources using the api c
 
 ## Features
 This library currently supports the following BigGo APIs (see full usage guide in [docs folder](docs)):
-- `/video` - [Video Api](./docs/api/video)
-- `/user` - [User Api](./docs/api/user)
+- `/video` - [Video Api](./docs/api/video.md)
+- `/user` - [User Api](./docs/api/user.md)
 ### Video API
 - Uploading videos.
 - Getting video information - Using video ID to get the information for both video and the uploader. (ex: user ID, description, etc. )
